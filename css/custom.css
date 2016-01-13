@@ -1,0 +1,208 @@
+/* main.css */
+
+/* allgemeine Vorgaben */
+body {
+   font-family: "Open Sans", sans-serif;
+   font-size: 12pt;
+
+   padding: 0;
+   margin: 0;
+}
+
+/* Basislayout */
+
+.clSiteHeader {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   height: 50px;
+   line-height: 50px;
+   margin: 0;
+   padding: 5px;
+   font-size: 12pt;
+   color: white;
+   background-color: #0000AA;
+}
+
+.clNav {
+   position: absolute;
+   top: 60px;  /* height, padding, border, margin von idSiteHeader beachten */
+   left: 0;
+   bottom: 0;
+   width: 140px;
+   border-right: 1px solid;
+   margin: 0;
+   padding: 5px;
+}
+
+.clNav a, a:hover, a:visited, a:active{
+   display: block;
+   text-decoration: none;
+   margin-bottom: 10px;
+}
+
+.clNav a:hover {
+   font-weight: bold;
+}
+
+.clContentOuter {
+   position: absolute;
+   top: 60px;  /* height, padding, border, margin von idSiteHeader beachten */
+   left: 151px;
+   right: 0;
+   bottom: 0;
+   margin: 0;
+   padding: 0;
+}
+
+.clContent {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   margin: 0;
+   padding: 5px;
+}
+
+/* Elemente im Content-Bereich */
+
+.clContentHeader {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   height: 30px;
+   line-height: 30px;
+   margin: 0;
+   padding: 5px;
+   font-size: 14pt;
+   text-align: center;
+}
+
+.clContentArea {
+   position: absolute;
+   top: 40px; /* height, padding, border, margin von idContentHeader beachten */
+   left: 0;
+   right: 0;
+   bottom: 40px;  /* height, padding, border, margin von idButtonArea beachten */
+   margin: 0;
+   padding: 0px;
+
+   overflow-y: auto;
+}
+
+.clButtonArea {
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   height: 30px;
+   line-height: 30px;
+   margin: 0;
+   padding: 5px;
+   text-align: center;
+   background-color: #EEEEEE;
+}
+
+/* Links und Submit-Schalter im Buttonbereich gestalten */
+
+.clButtonArea button, a, input[type="submit"] {
+   margin: 0 5px;
+   padding: 3px 6px;
+   font-size: 10pt;
+   text-decoration: none;
+   border: 1px solid;
+   color: black;
+   background-color: buttonface;
+}
+
+.clButtonArea button:disabled {
+   color: graytext;
+}
+/* unterschiedliche Kennzeichnungen je nach Bedienung vermeiden */
+
+.clButtonArea a:hover, a:visited, a:active {
+   color: black;
+}
+
+/* Gestaltung von Tabellen */
+
+#idList {
+   table-layout: fixed;
+   width: 80%;
+   border: 1px solid;
+   border-collapse: collapse;
+   margin:auto;
+}
+
+#idList th {
+   text-align: left;
+   padding-left: 6px;
+}
+#idList th, #idList td {
+   padding: 3px;
+   border: 1px solid;
+}
+
+/* damit wird jede ungerade Zeile in Tabellen mit einer anderen Hintergrundfarbe ausgegeben */
+/* den Effekt nennt man auch "Zebra"-Tables */
+
+tr:nth-of-type(odd) {
+  background-color:#ccc;
+} 
+
+#idList tr.clSelected {
+   background-color: blue;
+   color: white;
+}
+
+/* Gestaltung von Formularen */
+
+/* das Formular nochmals zusätzlich gestalten */
+#idForm .clContentArea {
+   width: 500px;
+   margin: auto;
+}
+
+.clFormRow {
+   position: relative; /* damit das Element in jedem Fall "positioniert" ist und damit als Bezugspunkt geeignet ist */
+   height: 25px;
+   margin-bottom: 10px;
+}
+
+.clFormRow label {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 150px;
+   text-align: right;
+}
+
+.clFormRow input {
+   position: absolute;
+   top: 0;
+   left: 160px;
+   width: 250px;
+}
+
+label span.clRequired {
+   color: red;
+   content: '*';
+
+}
+
+.clLogin {
+   position: absolute;
+   display: block;
+   top: 10px;  /* height, padding, border, margin von idSiteHeader beachten */
+   width: 80px;
+   margin: 0;
+   padding: 5px;
+   right: 5px;
+}
+
+
+
+/* EOF */

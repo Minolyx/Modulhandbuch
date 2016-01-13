@@ -1,0 +1,22 @@
+Modulhandbuch
+
+Studiengang:
+	- Bezeichnung
+	- Kurzbezeichnung
+	- Anzahl Semester
+
+ -> Modul
+	- Bezeichnung
+	- Kurzbezeichnung
+	- Anzahl Kreditpunkte
+	- Anzahl SWS (V/Ü/P)
+	- Beschreibung
+
+  -> Lehrverantsaltung  ???
+	- Mathe 1 Vorlesung
+	- Mathe 1 Übung
+	- OOA Praktikum
+		.
+		.
+		.
+
