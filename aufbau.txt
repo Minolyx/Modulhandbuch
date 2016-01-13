@@ -20,3 +20,20 @@ Studiengang:
 		.
 		.
 
+studiengang-liste wird geladen, aber eine funktion die 
+es anzeigen sollte wird nicht ausgeführt (nehme an es ist 
+render_px() )
+
+vielleicht wird deswegen auch das template gar net ausgeführt
+und geladen
+
+theoretisch sollte es aber die dateien in data/studiengang
+auslesen und anhand des templates in die tabelle einfügen
+
+"Operationen, die auf eine ausgewählte Zeile angewendet werden 
+können (z.B. ändern), werden als separate Schalter angeboten; 
+die Verwendung von Schaltern in jeder Zeile ist nicht zulässig"
+-> deswegen der 'Anzeigen' button unten, über den man dann zu
+	den infos zum ausgewählten studiengang kommt
+
+
