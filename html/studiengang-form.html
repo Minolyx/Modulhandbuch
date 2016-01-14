@@ -1,0 +1,26 @@
+<form id="idForm" class="clContent" action="/save" method="POST">
+   <h2 id="idContentHeader" class="clContentHeader">
+      Studiengang Formular
+   </h2>
+   <div id="idContentArea" class="clContentArea">
+
+   <input type="hidden" value="" id="id_s" name="id_s" />
+   <div class="clFormRow">
+      <label for="name_s">Studiengang <span class="clRequired"></span></label>
+      <input type="text" value="" id="name_s" name="name_s" autofocus required />
+   </div>
+   <div class="clFormRow">
+      <label for="typ_s">Kurzbezeichnung <span class="clRequired"></span></label>
+      <input type="text" value="" id="typ_s" name="typ_s" required />
+   </div>
+   <div class="clFormRow">
+      <label for="referenz_s">Semester #</label>
+      <input type="url" value="" id="referenz_s" name="referenz_s" />
+   </div>
+
+   </div>
+   <div id="idButtonArea" class="clButtonArea">
+      <button data-action="back" class="clButton">Zurück</button>
+      <button data-action="save" class="clButton">Speichern</button>
+   </div>
+</form>

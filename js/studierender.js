@@ -129,13 +129,19 @@ STUDAPP.ListView_cl = Class.create({
       // json-Daten bereits in js-Objekte umgesetzt
       var rows_s = STUDAPP.tm_o.execute_px('studiengang.tpl', data_opl);
       this.initList_p();
-
       $("#idList tr[class!='listheader']").remove();
       $("#idList").append(rows_s);
       $("#idListContent").show();
       console.log("[ListView_cl] doRender");
-
+      var markup_s2 = '<button data-action="show" class="clButton">Anzeigen</button>' +
+         '<button data-action="add" class="clButton">Erstellen</button>' +
+         '<button data-action="edit" class="clButton">Bearbeiten</button>' +
+         '<button data-action="delete" class="clButton">Löschen</button>' 
+      $('#idButtonArea').html(markup_s2);
+      this.disableButtons_p();
+      
    },
+
    initList_p: function () {
       this.rowId_s = ""; // id der selektierten Zeile
       // Buttons teilweise deaktivieren, bis eine Zeile ausgewählt wurde
@@ -209,11 +215,16 @@ STUDAPP.ListView_cl = Class.create({
             alert("Wählen Sie bitte einen Eintrag in der Tabelle aus!");
          }
          break;
-      }
+      case 'login-form':
+         $get('/html/login.html', function(data_opl){
+            $("#idContentOuter").append(data_spl);
+            $("#idForm").hide();
+         })
       // Weiterleitung und Standardbearbeitung unterbinden
       event_opl.stopPropagation();
       event_opl.preventDefault();
 
+      }
    },
    // stärkere Einschränkung mit #idListContent notwendig, damit nicht die Buttons auf dem
    // Formular ebenfalls geändert werden
@@ -245,7 +256,7 @@ STUDAPP.Nav_cl = Class.create({
       // Parameter data_opl wird hier nicht benötigt
       // feste Voragben berücksichtigen
       var markup_s = '<a href="#" data-action="list">Studiengänge</a> ' +
-                     '<a href="#" data-action="add">blub</a>';
+                     '<a href="#" data-action="add">Hinzufügen</a>';
       $('#idNav').html(markup_s);
    },
    initHandler_p: function () {
@@ -262,5 +273,6 @@ STUDAPP.Nav_cl = Class.create({
       });
    }
 });
+
 
 // EOF

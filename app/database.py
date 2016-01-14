@@ -4,6 +4,7 @@ import os
 import os.path
 import codecs
 import json
+from operator import itemgetter
 
 class Database_cl(object):
 	def __init__(self):
@@ -13,9 +14,16 @@ class Database_cl(object):
 	def create_px(self, data_opl):
 		id_s = self.nextId_p()
       # Datei erzeugen
-		file_o = codecs.open(os.path.join('data/studiengang', id_s+'.dat'), 'w', 'utf-8')
-		file_o.write(json.dumps(data_opl, indent=3, ensure_ascii=True))
-		file_o.close()
+		path = "./data/studiengang.json"
+		data_opl['id'] = id_s
+
+		with open(path, 'r') as pathfile:
+			content = json.load(pathfile)
+		content.append(data_opl)
+
+		with open(path, 'w') as pathfile:
+			json.dumps(content, pathfile)
+
 
 		self.data_o[id_s] = data_opl
 
@@ -35,26 +43,34 @@ class Database_cl(object):
 
 	#update
 	#delete
-	#getDefault
+	def getDefault_px(self):
+
+		return {
+			'studiengang': '',
+			'kurzBezeichnung': '',
+			'semesterAnzahl': ''
+		}
 
 	def readData_p(self):
-		files_a = os.listdir('data/studiengang')
-		for fileName_s in files_a:
-			if fileName_s.endswith('.dat') and fileName_s != 'maxid.dat':
-				file_o = codecs.open(os.path.join('data/studiengang', fileName_s), 'rU', 'utf-8')
-				content_s = file_o.read()
-				file_o.close()
-				id_s = fileName_s[:-4]
-				self.data_o[id_s] = json.loads(content_s)
+		filePath = "./data/studiengang.json"
+
+		with open(filePath, "r") as content:
+			majors = json.load(content)
+
+		majors = sorted(majors, key=itemgetter('studiengang'))
+
+		for entry in majors:
+			id_s = entry["id"]
+			self.data_o[id_s] = entry
 
 
 	def nextId_p(self):
-		file_o = open(os.path.join('data/studiengang', 'maxid.dat'), 'r+')
-		maxId_s = file_o.read()
-		maxId_s = str(int(maxId_s)+1)
-		file_o.seek(0)
-		file_o.write(maxId_s)
-		file_o.close()
+		filePath = "./data/studiengang.json"
+		studiengangID = 0
+		with open(filePath, "r") as content:
+			majors = json.load(content)
 
-		return maxId_s
+			for entry in majors:
+				studiengangID = studiengangID + 1
+		return studiengangID.toString()
 # EOF

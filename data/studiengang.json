@@ -1,0 +1,6 @@
+[
+	{"id":"2", "studiengang": "Informatik", "kurzBezeichnung": "Info", "semesterAnzahl": "6"},
+	{"id":"1", "studiengang": "Betriebswirtschaftslehre", "kurzBezeichnung": "BWL", "semesterAnzahl": "6"},
+	{"id":"3", "studiengang": "ba", "kurzBezeichnung": "b", "semesterAnzahl": "3"}
+]
+

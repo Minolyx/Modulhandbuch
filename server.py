@@ -30,6 +30,19 @@ def main():
 	)
 
 	cherrypy.tree.mount(
+		formular.Studiengang_cl(), '/formular', {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
+	)
+
+	cherrypy.tree.mount(
+		login.Studiengang_cl(), '/login', {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
+	)
+
+	cherrypy.tree.mount(
+		verantwortliche.Studiengang_cl(), '/verantwortliche', {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
+	)
+
+
+	cherrypy.tree.mount(
 		template.Template_cl(), '/template', {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
 	)
 	

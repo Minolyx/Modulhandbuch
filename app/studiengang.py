@@ -105,3 +105,10 @@ class Studiengang_cl(object):
     def getList_p(self):
         data_o = self.db_o.read_px()
         return data_o
+
+    def getForm_p(self, id_spl):
+        data_o = self.db_o.read_px(id_spl)
+        if data_o != None:
+            return self.view_o.createForm_px(id_spl, data_o)
+        else:
+            return None
