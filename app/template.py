@@ -46,7 +46,6 @@ class Template_cl(object):
          content_s = file_o.read()
          file_o.close()
          retVal_o["templates"][fileName_s] = content_s
-
       return json.dumps(retVal_o)
       
 # EOF

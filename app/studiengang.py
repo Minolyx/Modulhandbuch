@@ -32,9 +32,9 @@ class Studiengang_cl(object):
 	def __init__(self):
 		self.db_o = database.Database_cl()
 
-	def GET(self, id = None):
+	def GET(self):
 		retVal_o = {
-	        'data': None
+	        'data': 1
 	    }
 		if id == None:
 			# Anforderung der Liste
@@ -48,7 +48,7 @@ class Studiengang_cl(object):
 
 		return json.dumps(retVal_o)
 
-		
+
 
 	def PUT(self, **data_opl):
 		retVal_o = {

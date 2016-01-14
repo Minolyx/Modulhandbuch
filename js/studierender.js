@@ -5,7 +5,6 @@ STUDAPP.Studiengang_cl = Class.create({
 		this.content_o = null;
 		this.nav_o = new STUDAPP.Nav_cl();
 		this.listView_o = new STUDAPP.ListView_cl();
-		this.detailView_o = new STUDAPP.DetailView_cl();
 
 		STUDAPP.es_o.subscribe_px(this, 'app');
 	},
@@ -37,7 +36,22 @@ STUDAPP.Studiengang_cl = Class.create({
          console.warning('[Studiengang_cl] unbekannte Notification: '+message_spl);
          break;
       }
-   	},
+   	}, setContent_p: function (newContent_opl, data_opl) {
+      if (this.content_o != null) {
+         if (this.content_o === newContent_opl) {
+            // wird bereits angezeigt, keine Änderung
+         } else {
+            if (this.content_o.canClose_px()) {
+               this.content_o.close_px();
+               this.content_o = newContent_opl;
+               this.content_o.render_px(data_opl);
+            }
+         }
+      } else {
+         this.content_o = newContent_opl;
+         this.content_o.render_px(data_opl);
+      }
+   }
 
 });
 

@@ -30,7 +30,7 @@ def main():
 	)
 
 	cherrypy.tree.mount(
-		template.Template_cl(), 'template', {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
+		template.Template_cl(), '/template', {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
 	)
 	
 	cherrypy.config.update({
