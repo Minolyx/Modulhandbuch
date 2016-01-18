@@ -1,20 +1,139 @@
 [
   {
-    "kurz": "test2",
-    "semester": 235,
+    "semester": 6,
+    "kurz": "ET",
+    "bezeichnung": "Elektrotechnik",
+    "id": 2,
     "lehrveranstaltungen": [
       {
-        "semester": 23,
-        "bezeichnung": "Ein weiteres Modul 234",
-        "id": 4
+        "bezeichnung": "Mathematik",
+        "semester": 1,
+        "id": 7
       },
       {
-        "semester": 34,
-        "bezeichnung": "testmodul ",
-        "id": 6
+        "semester": 3,
+        "bezeichnung": "Einf\u00fchrung  in die Programmierung",
+        "id": 8
+      },
+      {
+        "bezeichnung": "Physik",
+        "semester": 1,
+        "id": 10
+      },
+      {
+        "semester": 2,
+        "bezeichnung": "Stochastik",
+        "id": 9
+      },
+      {
+        "semester": 1,
+        "bezeichnung": "Chemie",
+        "id": 11
+      },
+      {
+        "bezeichnung": "Web-Engineering",
+        "semester": 3,
+        "id": 13
+      },
+      {
+        "bezeichnung": "Objektorientierte Anwendungsentwicklung",
+        "semester": 2,
+        "id": 12
       }
-    ],
-    "bezeichnung": "test23",
-    "id": 1
+    ]
+  },
+  {
+    "semester": 6,
+    "kurz": "HC",
+    "bezeichnung": "HealthCare",
+    "id": 3,
+    "lehrveranstaltungen": [
+      {
+        "semester": 1,
+        "bezeichnung": "Algebra",
+        "id": 7
+      },
+      {
+        "bezeichnung": "Physik",
+        "semester": 2,
+        "id": 10
+      },
+      {
+        "bezeichnung": "Chemie",
+        "semester": 1,
+        "id": 11
+      },
+      {
+        "bezeichnung": "Einf\u00fchrung  in die Programmierung",
+        "semester": 1,
+        "id": 8
+      },
+      {
+        "semester": 2,
+        "bezeichnung": "Stochastik",
+        "id": 9
+      },
+      {
+        "semester": 3,
+        "bezeichnung": "Web-Engineering",
+        "id": 13
+      },
+      {
+        "semester": 2,
+        "bezeichnung": "Objektorientierte Anwendungsentwicklung",
+        "id": 12
+      }
+    ]
+  },
+  {
+    "bezeichnung": "Informatik",
+    "kurz": "Info",
+    "semester": 6,
+    "id": 4,
+    "lehrveranstaltungen": [
+      {
+        "semester": 1,
+        "bezeichnung": "Algebra",
+        "id": 7
+      },
+      {
+        "semester": 1,
+        "bezeichnung": "Einf\u00fchrung  in die Programmierung",
+        "id": 8
+      },
+      {
+        "bezeichnung": "Stochastik",
+        "semester": 2,
+        "id": 9
+      },
+      {
+        "bezeichnung": "Web-Engineering",
+        "semester": 3,
+        "id": 13
+      },
+      {
+        "semester": 2,
+        "bezeichnung": "Objektorientierte Anwendungsentwicklung",
+        "id": 12
+      }
+    ]
+  },
+  {
+    "bezeichnung": "Mathematik",
+    "kurz": "M",
+    "semester": 6,
+    "id": 5,
+    "lehrveranstaltungen": [
+      {
+        "bezeichnung": "Algebra",
+        "semester": 1,
+        "id": 7
+      },
+      {
+        "semester": 2,
+        "bezeichnung": "Mathematik 2",
+        "id": 9
+      }
+    ]
   }
 ]

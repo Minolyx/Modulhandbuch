@@ -1,34 +1,58 @@
 [
   {
-    "beschreibung": "",
-    "bezeichnung": "Ein weiteres Modul",
-    "kreditpunkte": 1,
-    "id": 3,
-    "sws": 0,
-    "kurz": "TEST"
+    "beschreibung": "Einf\u00fchrung in die Mathematik",
+    "sws": 20,
+    "id": 7,
+    "kurz": "Mathe 1",
+    "kreditpunkte": 6,
+    "bezeichnung": "Mathematik 1"
   },
   {
-    "beschreibung": "",
-    "bezeichnung": "Ein weiteres Modul 234",
-    "kreditpunkte": 123,
-    "id": 4,
-    "sws": 0,
-    "kurz": "TEST"
+    "beschreibung": "Programmiersprache C",
+    "sws": 25,
+    "id": 8,
+    "kurz": "EPR",
+    "kreditpunkte": 5,
+    "bezeichnung": "Einf\u00fchrung  in die Programmierung"
   },
   {
-    "beschreibung": "24",
-    "bezeichnung": "Neues Modul",
-    "kreditpunkte": 23,
-    "id": 5,
-    "sws": 23,
-    "kurz": "123"
+    "beschreibung": "Fortgeschrittene Mathematik",
+    "sws": 20,
+    "id": 9,
+    "kurz": "Mathe  2",
+    "kreditpunkte": 5,
+    "bezeichnung": "Mathematik 2"
   },
   {
-    "beschreibung": "",
-    "bezeichnung": "testmodul sven",
-    "kreditpunkte": 1,
-    "id": 6,
-    "sws": 2,
-    "kurz": "sven"
+    "beschreibung": "Allgemeine Grundlagen der Physik",
+    "sws": 18,
+    "id": 10,
+    "kurz": "Ph",
+    "kreditpunkte": 4,
+    "bezeichnung": "Physik"
+  },
+  {
+    "beschreibung": "Allgemeine Grundlagen; Bindungsarten u. Stoffeigenschaften",
+    "sws": 22,
+    "id": 11,
+    "kurz": "C",
+    "kreditpunkte": 4,
+    "bezeichnung": "Chemie"
+  },
+  {
+    "beschreibung": "Programmiersprache C++",
+    "sws": 22,
+    "id": 12,
+    "kurz": "OOA",
+    "kreditpunkte": 5,
+    "bezeichnung": "Objektorientierte Anwendungsentwicklung"
+  },
+  {
+    "beschreibung": "Web-basierte Technologien",
+    "sws": 20,
+    "id": 13,
+    "kurz": "WEB",
+    "kreditpunkte": 4,
+    "bezeichnung": "Web-Engineering"
   }
 ]
