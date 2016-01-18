@@ -1,26 +1,20 @@
 [
   {
     "beschreibung": "",
-    "sws": 6,
-    "kurz": "EPR",
-    "bezeichnung": "Einf\u00c3\u00bchrung in die Programmierung",
     "id": 2,
-    "kreditpunkte": 6
+    "kurz": "TEST",
+    "kreditpunkte": 0,
+    "bezeichnung": "Test Modul 2 3",
+    "sws": 0,
+    "lehrveranstaltungen": []
   },
   {
     "beschreibung": "",
-    "sws": 6,
-    "kurz": "MAT2",
-    "bezeichnung": "Mathematik 2",
     "id": 3,
-    "kreditpunkte": 6
-  },
-  {
-    "beschreibung": "",
-    "sws": 6,
-    "kurz": "MAT1",
-    "bezeichnung": "Mathematik 1",
-    "id": 4,
-    "kreditpunkte": 6
+    "kurz": "TEST",
+    "kreditpunkte": 0,
+    "bezeichnung": "Test Modul",
+    "sws": 0,
+    "lehrveranstaltungen": []
   }
 ]

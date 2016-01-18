@@ -1,44 +1,37 @@
 [
   {
-    "id": 0,
-    "semester": 6,
-    "kurz": "Info",
-    "bezeichnung": "Informatik"
-  },
-  {
-    "id": 1,
-    "semester": 6,
-    "kurz": "BWL",
-    "bezeichnung": "Betriebswirtschaftslehre"
-  },
-  {
+    "kurz": "KRZ",
+    "bezeichnung": "Kurz",
     "id": 2,
-    "semester": "2",
-    "kurz": "Test",
-    "bezeichnung": "Test Fachasdasdasd"
+    "lehrveranstaltungen": [],
+    "semester": 23
   },
   {
+    "kurz": "Test",
+    "bezeichnung": "Test Fachasdasdasd",
     "id": 3,
-    "semester": "2",
-    "kurz": "Test",
-    "bezeichnung": "Test Fachasdasdasd"
+    "lehrveranstaltungen": [],
+    "semester": "2"
   },
   {
+    "kurz": "Test",
+    "bezeichnung": "Test Fachasdasdasd",
     "id": 4,
-    "semester": "2",
-    "kurz": "Test",
-    "bezeichnung": "Test Fachasdasdasd"
+    "lehrveranstaltungen": [],
+    "semester": "2"
   },
   {
+    "kurz": "",
+    "bezeichnung": "",
     "id": 5,
-    "semester": 2,
-    "kurz": "Test",
-    "bezeichnung": "Test Fa768678"
+    "lehrveranstaltungen": [],
+    "semester": 23
   },
   {
+    "kurz": "KRZ",
+    "bezeichnung": "Kurz",
     "id": 6,
-    "semester": "2",
-    "kurz": "Test",
-    "bezeichnung": "Test Fachasdasdasd"
+    "lehrveranstaltungen": [],
+    "semester": 23
   }
 ]

@@ -3,7 +3,7 @@
 import os.path
 import cherrypy
 
-from app import studiengang,modul, template
+from app import studiengang,modul,lehrveranstaltung, template
 
 
 def main():
@@ -31,6 +31,10 @@ def main():
 
     cherrypy.tree.mount(
             modul.Request(), '/modul', {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
+    )
+
+    cherrypy.tree.mount(
+            lehrveranstaltung.Request(), '/lehrveranstaltung/', {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
     )
 
     cherrypy.tree.mount(
