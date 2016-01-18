@@ -3,7 +3,6 @@
 import json
 from operator import itemgetter
 
-
 class Database(object):
 
     modulFile = "./data/modul.json"
@@ -146,10 +145,9 @@ class Database(object):
 
         data["semester"] = sorted(semester.items())
         data['kreditpunkte'] = kreditpunkte
-        del data['lehrveranstaltungen']
+        data['lehrveranstaltungen'] = sorted(data["lehrveranstaltungen"] , key=itemgetter('bezeichnung'))
 
         return data
-
 
 
     def deleteModul(self,id):

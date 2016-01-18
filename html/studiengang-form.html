@@ -2,28 +2,64 @@
    <h2 id="idContentHeader" class="clContentHeader">
       Studiengang Formular
    </h2>
+
    <div id="idContentArea" class="clContentArea">
 
-   <input type="hidden" value="" id="id" name="id" />
-   <div class="clFormRow">
-      <label for="bezeichnung">Studiengang <span class="clRequired"></span></label>
-      <input type="text" value="" id="bezeichnung" name="bezeichnung" autofocus required />
+       <input type="hidden" value="" id="id" name="id" />
+       <div class="clFormRow">
+          <label for="bezeichnung">Studiengang <span class="clRequired"></span></label>
+          <input type="text" value="" id="bezeichnung" name="bezeichnung" autofocus required />
+       </div>
+       <div class="clFormRow">
+          <label for="kurz">Kurzbezeichnung <span class="clRequired"></span></label>
+          <input type="text" value="" id="kurz" name="kurz" required />
+       </div>
+       <div class="clFormRow">
+          <label for="semester">Semester #</label>
+          <input type="url" value="" id="semester" name="semester" />
+       </div>
+<div style="margin:25px;    ">
+      <h4>
+         Lehrveranstaltungen
+      </h4>
+
+      <div style="float:left;" >
+         Module
+          <div>
+      <select id="moduleListe" size="15">
+      </select></div>
+      </div>
+
+       <div style="float: left; height: 100px;
+    margin: 20px;
+    margin-top: 70px;
+    " id="editPanel">
+
+           <div style="margin:10px;display:none;">
+               <input type="hidden" class="id" >
+               <div>
+                   <label>Bezeichnung:</label> </div>
+               <div>
+                   <input class="bezeichnung" type="text" />
+               </div>
+               <div>
+                   <label>Semester:</label> </div>
+               <div>
+                   <input class="semester" type="number" /></div>
+               <button class="save" style="float:right;margin-top:10px;">Speichern</button>
+               <button class="add" style="float:right;margin-top:10px;margin-right:10px;">Hinzufügen</button>
+               <button class="remove" style="float:right;margin-top:10px;margin-right:10px;">Entfernen</button>
+           </div>
+        </div>
+
+      <div style="float:left;">
+         Lehrveranstaltungen
+          <div>
+            <select id="lehrveranstaltungenListe" size="15">
+            </select></div>
+      </div>
+      <div style="clear:both"></div>
+</div>
    </div>
-   <div class="clFormRow">
-      <label for="kurz">Kurzbezeichnung <span class="clRequired"></span></label>
-      <input type="text" value="" id="kurz" name="kurz" required />
-   </div>
-   <div class="clFormRow">
-      <label for="semester">Semester #</label>
-      <input type="url" value="" id="semester" name="semester" />
-   </div>
 
-      Lehrveranstaltungen
-
-      <table>
-
-      </table>
-
-
-   </div>
 </form>
