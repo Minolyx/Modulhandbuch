@@ -9,7 +9,7 @@
 
       <td>
       	@for var lehrveranstaltung in row[1]['lehrveranstaltungen']@
-      	<li>
+      	<li class="rows">
 	      	#row[1]['lehrveranstaltungen'][lehrveranstaltung]['bezeichnung']#
 	    </li>
       	@endfor@
@@ -17,7 +17,7 @@
 
       <td>
       	@for var lehrveranstaltung in row[1]['lehrveranstaltungen']@
-      	<li>
+      	<li class="rows">
 	      	#row[1]['lehrveranstaltungen'][lehrveranstaltung]['modul']['sws']#
 	    </li>
       	@endfor@
@@ -25,7 +25,7 @@
 
       <td>
         @for var lehrveranstaltung in row[1]['lehrveranstaltungen']@
-      	<li>
+      	<li class="rows">
 	      	#row[1]['lehrveranstaltungen'][lehrveranstaltung]['modul']['beschreibung']#
 	    </li>
       	@endfor@
@@ -33,7 +33,7 @@
 
       <td>
       	@for var lehrveranstaltung in row[1]['lehrveranstaltungen']@
-      	<li>
+      	<li class="rows">
 	      	#row[1]['lehrveranstaltungen'][lehrveranstaltung]['modul']['kreditpunkte']#
 	    </li>
       	@endfor@
