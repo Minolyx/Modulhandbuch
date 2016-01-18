@@ -59,13 +59,14 @@ class Database(object):
         entry["lehrveranstaltungen"] = modul["lehrveranstaltungen"]
         return self.updateEntry(self.studiengangFile,id,entry)
 
-    def updateLehrveranstaltung(self,studiengang,modul,bezeichnung):
+    def updateLehrveranstaltung(self,studiengang,modul,semester,bezeichnung):
         data = Database.readFile(self.studiengangFile)
         for entry in data:
             if entry == int(studiengang):
                 for lehrveranstaltung in data[entry]["lehrveranstaltungen"]:
                     if lehrveranstaltung["id"] == int(modul):
                         lehrveranstaltung["bezeichnung"] = bezeichnung
+                        lehrveranstaltung["semester"] = int(semester)
                         Database.writeFile(self.studiengangFile,data)
                         return True
         return False
@@ -93,7 +94,7 @@ class Database(object):
                 for lv in data[entry]["lehrveranstaltungen"]:
                     if(lv["id"] == modul["id"]):
                         return False
-                md = {"semester":semester,"bezeichnung":bezeichnung,"id":modul["id"]}
+                md = {"semester":int(semester),"bezeichnung":bezeichnung,"id":int(modul["id"])}
                 data[entry]["lehrveranstaltungen"].append(md);
                 Database.writeFile(self.studiengangFile,data)
                 return True

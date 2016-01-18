@@ -1,26 +1,34 @@
 [
   {
-    "kurz": "TEST",
+    "beschreibung": "",
     "bezeichnung": "Ein weiteres Modul",
     "kreditpunkte": 1,
     "id": 3,
     "sws": 0,
-    "beschreibung": ""
+    "kurz": "TEST"
   },
   {
-    "kurz": "TEST",
+    "beschreibung": "",
     "bezeichnung": "Ein weiteres Modul 234",
     "kreditpunkte": 123,
     "id": 4,
     "sws": 0,
-    "beschreibung": ""
+    "kurz": "TEST"
   },
   {
-    "kurz": "123",
+    "beschreibung": "24",
     "bezeichnung": "Neues Modul",
     "kreditpunkte": 23,
     "id": 5,
     "sws": 23,
-    "beschreibung": "24"
+    "kurz": "123"
+  },
+  {
+    "beschreibung": "",
+    "bezeichnung": "testmodul sven",
+    "kreditpunkte": 1,
+    "id": 6,
+    "sws": 2,
+    "kurz": "sven"
   }
 ]

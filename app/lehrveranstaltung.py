@@ -60,10 +60,10 @@ class Request(object):
             cherrypy.response.status = 404
         return json.dumps(response)
 
-    def POST(self, studiengang,modul,bezeichnung):
+    def POST(self, studiengang,modul,semester,bezeichnung):
         response = dict(success=None)
 
-        response['success'] = self.db.updateLehrveranstaltung(studiengang,modul,bezeichnung)
+        response['success'] = self.db.updateLehrveranstaltung(studiengang,modul,semester,bezeichnung)
         if not response["success"]:
             cherrypy.response.status = 404
 

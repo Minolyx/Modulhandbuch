@@ -195,18 +195,19 @@ STUDAPP.StudiengangForm = Class.create({
     },
     doRender: function (data) {
         // in das Formular übertragen
-        this.data = data["data"];
-        $('#idForm #id').val(this.data['id']);
-        $('#idForm #bezeichnung').val(this.data['bezeichnung'])
-        $('#idForm #semester').val(this.data['semester']);
-        $('#idForm #kurz').val(this.data['kurz']);
-        this.renderAssignment(this.data['id']);
+        var data = data["data"];
+        $('#idForm #id').val(data['id']);
+        $('#idForm #bezeichnung').val(data['bezeichnung'])
+        $('#idForm #semester').val(data['semester']);
+        $('#idForm #kurz').val(data['kurz']);
+        this.renderAssignment(data['id']);
         this.storeFormContent();
 
         $("#moduleListe").change(function() {
             $("#editPanel > div").show();
             $("#editPanel .bezeichnung").val($(this).find(":selected").attr("data_bezeichnung"));
             $("#editPanel .id").val($(this).find(":selected").attr("data_id"));
+            $("#editPanel .semester").val("");
 
             $("#editPanel .add").show();
             $("#editPanel .save").hide();
@@ -225,20 +226,81 @@ STUDAPP.StudiengangForm = Class.create({
         });
 
 
-        $("#editPanel .add").click
+        var that = this;
+        $("#editPanel .add").click(function(){
+
+            var studiengang = data['id'];
+            var modul = $("#editPanel .id").val();
+
+
+            var bezeichnung = $("#editPanel .bezeichnung").val();
+            var semester = $("#editPanel .semester").val();
+
+            if(bezeichnung == "" || !that.isNumeric(semester)){
+                alert("Bitte prüfen Sie die Eingaben in den Formularfeldern!");
+            }
+
+            $.ajax({
+                dataType: "json",
+                url: '/lehrveranstaltung/'+studiengang+'/'+modul,
+                type: 'PUT',
+                data:{"bezeichnung":bezeichnung,"semester":semester}
+            }).done(function(data){
+                if(data["success"]){
+                    that.renderAssignment(studiengang);
+                }
+            });
+        });
+
+        $("#editPanel .remove").click(function(){
+
+            var studiengang = data['id'];
+            var modul = $("#editPanel .id").val();
+
+            $.ajax({
+                dataType: "json",
+                url: '/lehrveranstaltung/'+studiengang+'/'+modul,
+                type: 'DELETE'
+            }).done(function(data){
+                if(data["success"]){
+                    that.renderAssignment(studiengang);
+                }
+            });
+        });
+
+        $("#editPanel .save").click(function(){
+
+            var studiengang = data['id'];
+            var modul = $("#editPanel .id").val();
+
+
+            var bezeichnung = $("#editPanel .bezeichnung").val();
+            var semester = $("#editPanel .semester").val();
+
+            if(bezeichnung == "" || !that.isNumeric(semester)){
+                alert("Bitte prüfen Sie die Eingaben in den Formularfeldern!");
+            }
+
+            $.ajax({
+                dataType: "json",
+                url: '/lehrveranstaltung/'+studiengang+'/'+modul,
+                type: 'POST',data:{"bezeichnung":bezeichnung,"semester":semester}
+            }).done(function(data){
+                if(data["success"]){
+                    that.renderAssignment(studiengang);
+                }
+            });
+        });
+
 
         $("#idForm").show();
     },
     renderAssignment: function (studiengang) {
+        $("#editPanel > div").hide();
+        $("#editPanel .bezeichnung").val("");
+        $("#editPanel .id").val("");
+        $("#editPanel .semester").val("");
 
-        $.ajax({
-            dataType: "json",
-            url: '/modul/',
-            type: 'GET'
-        }).done(function(data){
-            var rows = STUDAPP.templateManager.execute_px('modulList.tpl', data);
-            $("#moduleListe").append(rows);
-        });
 
         $.ajax({
             dataType: "json",
@@ -246,9 +308,29 @@ STUDAPP.StudiengangForm = Class.create({
             type: 'GET'
         }).done(function(data){
             var rows = STUDAPP.templateManager.execute_px('lehrveranstaltungList.tpl', data);
+            $("#lehrveranstaltungenListe").empty();
             $("#lehrveranstaltungenListe").append(rows);
-        });
 
+
+            $.ajax({
+                dataType: "json",
+                url: '/modul/',
+                type: 'GET'
+            }).done(function(data){
+                var rows = STUDAPP.templateManager.execute_px('modulList.tpl', data);
+                $("#moduleListe").empty();
+                $("#moduleListe").append(rows);
+
+                $("#moduleListe option").each(function(i,item){
+                    var id = $(item).attr("data_id");
+                    if($('#lehrveranstaltungenListe option[data_id="'+id+'"]').length != 0){
+                        $(item).remove();
+                    }
+                })
+            });
+
+
+        });
 
 
     },

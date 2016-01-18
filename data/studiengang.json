@@ -1,25 +1,20 @@
 [
   {
-    "bezeichnung": "test23",
+    "kurz": "test2",
+    "semester": 235,
     "lehrveranstaltungen": [
       {
-        "bezeichnung": "BEin weiteres Modul",
-        "id": 3,
-        "semester":1
+        "semester": 23,
+        "bezeichnung": "Ein weiteres Modul 234",
+        "id": 4
       },
       {
-        "bezeichnung": "AEin weiteres Modul 234",
-        "id": 4,
-        "semester":2
-      },
-      {
-        "bezeichnung": "AEin weiteres Modul 234",
-        "id": 5,
-        "semester":1
+        "semester": 34,
+        "bezeichnung": "testmodul ",
+        "id": 6
       }
     ],
-    "id": 1,
-    "kurz": "test2",
-    "semester": 235
+    "bezeichnung": "test23",
+    "id": 1
   }
 ]
