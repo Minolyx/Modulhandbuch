@@ -13,11 +13,11 @@ class Database(object):
 
     def getModulTemplate(self,id=None,bezeichnung=None,kurz=None,kreditpunkte=None,sws=None,beschreibung=None):
 
-        id = 0 if id is None else id
+        id = 0 if id is None else int(id)
         bezeichnung = "" if bezeichnung is None else bezeichnung
         kurz = "" if kurz is None else kurz
-        kreditpunkte = 0 if kreditpunkte is None else kreditpunkte
-        sws = 0 if sws is None else sws
+        kreditpunkte = 0 if kreditpunkte is None else int(kreditpunkte)
+        sws = 0 if sws is None else int(sws)
         beschreibung = "" if beschreibung is None else beschreibung
 
         return {
@@ -31,10 +31,10 @@ class Database(object):
 
     def getLehrveranstaltungTemplate(self,id,modul=None,studiengang=None,semester=None,typ=None,datum=None,uhrzeit=None,raum=None):
 
-        id = 0 if id is None else id
-        modul = 0 if modul is None else modul
-        studiengang = 0 if studiengang is None else studiengang
-        semester = 0 if semester is None else semester
+        id = 0 if id is None else int(id)
+        modul = 0 if modul is None else int(modul)
+        studiengang = 0 if studiengang is None else int(studiengang)
+        semester = 0 if semester is None else int(semester)
         typ = "" if typ is None else typ
         datum = "" if datum is None else datum
         uhrzeit = "" if uhrzeit is None else uhrzeit
@@ -52,10 +52,10 @@ class Database(object):
         }
 
     def getStudiengangTemplate(self,id=None,bezeichnung=None,kurz=None,semester=None):
-        id = 0 if id is None else id
+        id = 0 if id is None else int(id)
         bezeichnung = "" if bezeichnung is None else bezeichnung
         kurz = "" if kurz is None else kurz
-        semester = 0 if semester is None else semester
+        semester = 0 if semester is None else int(semester)
         return {
             'id': id,
             'bezeichnung': bezeichnung,
