@@ -82,6 +82,11 @@
         "semester": 2,
         "bezeichnung": "Objektorientierte Anwendungsentwicklung",
         "id": 12
+      },
+      {
+        "semester": 2,
+        "bezeichnung": "ffffff",
+        "id": 14
       }
     ]
   },
@@ -115,6 +120,11 @@
         "semester": 2,
         "bezeichnung": "Objektorientierte Anwendungsentwicklung",
         "id": 12
+      },
+      {
+        "bezeichnung": "ffffff",
+        "semester": 2,
+        "id": 14
       }
     ]
   },
@@ -133,6 +143,49 @@
         "semester": 2,
         "bezeichnung": "Mathematik 2",
         "id": 9
+      },
+      {
+        "semester": 22,
+        "bezeichnung": "ugh",
+        "id": 8
+      },
+      {
+        "semester": 43,
+        "bezeichnung": "noooooooooo",
+        "id": 12
+      },
+      {
+        "semester": 2,
+        "bezeichnung": "ffffff",
+        "id": 14
+      }
+    ]
+  },
+  {
+    "bezeichnung": "shit",
+    "kurz": "blub",
+    "semester": 329393,
+    "id": 6,
+    "lehrveranstaltungen": [
+      {
+        "bezeichnung": "wasssuup",
+        "semester": 34,
+        "id": 7
+      },
+      {
+        "bezeichnung": "ugh",
+        "semester": 22,
+        "id": 8
+      },
+      {
+        "bezeichnung": "noooooooooo",
+        "semester": 43,
+        "id": 12
+      },
+      {
+        "bezeichnung": "ffffff",
+        "semester": 2,
+        "id": 14
       }
     ]
   }
