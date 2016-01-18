@@ -8,14 +8,20 @@
       <style type="text/css">
          @import url("/css/custom.css");
       </style>
-      <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
-      <script type="text/javascript" src="/js/inheritance.js"></script>
-      <script type="text/javascript" src="/js/es.js"></script>
-      <script type="text/javascript" src="/js/te.js"></script>
+      <script type="text/javascript" src="/js/lib/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="/js/lib/inheritance.js"></script>
+      <script type="text/javascript" src="/js/lib/es.js"></script>
+      <script type="text/javascript" src="/js/lib/te.js"></script>
       <script type="text/javascript" src="/js/tm.js"></script>
-      <!-- hier zur Verdeutlichung der Strukturierung Aufteilung in mehrere js-Quellen -->
-      <!-- wird man im produktiven Einsatz zu einer js-Quelle zusammenfassen -->
-      <script type="text/javascript" src="/js/studierender.js"></script>
+
+
+      <script type="text/javascript" src="/js/komponenten/menu.js"></script>
+      <script type="text/javascript" src="/js/komponenten/navigation.js"></script>
+      <script type="text/javascript" src="/js/komponenten/studiengang.js"></script>
+      <script type="text/javascript" src="/js/komponenten/modul.js"></script>
+      <script type="text/javascript" src="/js/komponenten/modulhandbuch.js"></script>
+      <script type="text/javascript" src="/js/komponenten/semesterplan.js"></script>
+      <script type="text/javascript" src="/js/app.js"></script>
    </head>
    <body>
       <header>
@@ -27,8 +33,12 @@
          </p>
       </header>
       <section id="idContentOuter" class="clContentOuter">
+         <div id="idButtonArea" class="clButtonArea">
+         </div>
       </section>
       <nav id="idNav" class="clNav">
       </nav>
+
+
    </body>
 </html>

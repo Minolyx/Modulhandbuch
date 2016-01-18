@@ -1,37 +1,25 @@
 [
   {
-    "kurz": "KRZ",
-    "bezeichnung": "Kurz",
-    "id": 2,
-    "lehrveranstaltungen": [],
-    "semester": 23
-  },
-  {
-    "kurz": "Test",
-    "bezeichnung": "Test Fachasdasdasd",
-    "id": 3,
-    "lehrveranstaltungen": [],
-    "semester": "2"
-  },
-  {
-    "kurz": "Test",
-    "bezeichnung": "Test Fachasdasdasd",
-    "id": 4,
-    "lehrveranstaltungen": [],
-    "semester": "2"
-  },
-  {
-    "kurz": "",
-    "bezeichnung": "",
-    "id": 5,
-    "lehrveranstaltungen": [],
-    "semester": 23
-  },
-  {
-    "kurz": "KRZ",
-    "bezeichnung": "Kurz",
-    "id": 6,
-    "lehrveranstaltungen": [],
-    "semester": 23
+    "bezeichnung": "test23",
+    "lehrveranstaltungen": [
+      {
+        "bezeichnung": "BEin weiteres Modul",
+        "id": 3,
+        "semester":1
+      },
+      {
+        "bezeichnung": "AEin weiteres Modul 234",
+        "id": 4,
+        "semester":2
+      },
+      {
+        "bezeichnung": "AEin weiteres Modul 234",
+        "id": 5,
+        "semester":1
+      }
+    ],
+    "id": 1,
+    "kurz": "test2",
+    "semester": 235
   }
 ]

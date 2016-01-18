@@ -26,7 +26,7 @@ TELIB.TemplateManager_cl = Class.create({
          this.templates_o = data_opl['templates'];
          // Benachrichtigung senden
          //+++ Bezeichnung Namensraum korrigieren
-         STUDAPP.es_o.publish_px('app', ['templates.loaded', null]);
+         STUDAPP.eventService.publish_px('app', ['templates.loaded', null]);
       })
       .fail(function(jqXHR_opl, textStatus_spl) {
          alert( "[TELIB.tm] Fehler bei Anforderung: " + textStatus_spl );

@@ -44,7 +44,7 @@ class Request(object):
 
         return json.dumps(response)
 
-    def PUT(self, bezeichnung,kurz,semester):
+    def PUT(self, id,bezeichnung,kurz,semester):
         response = dict(id=None)
 
         response['id'] = self.db.putStudiengang(bezeichnung,kurz,semester)
@@ -55,9 +55,9 @@ class Request(object):
         return json.dumps(response)
 
     def DELETE(self,id):
-        response = dict(success=False)
-        response["success"] = self.db.deleteStudiengang(id)
-        if not response["success"]:
+        response = dict(id=None)
+        response["id"] = self.db.deleteStudiengang(id)
+        if response["id"] is None:
             cherrypy.response.status = 404
         return json.dumps(response)
 

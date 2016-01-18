@@ -97,7 +97,7 @@ body {
    position: absolute;
    left: 0;
    right: 0;
-   bottom: 0;
+   bottom: 0;z-index: 9999;
    height: 30px;
    line-height: 30px;
    margin: 0;
@@ -129,7 +129,7 @@ body {
 
 /* Gestaltung von Tabellen */
 
-#idList {
+.listTable {
    table-layout: fixed;
    width: 80%;
    border: 1px solid;
@@ -137,11 +137,11 @@ body {
    margin:auto;
 }
 
-#idList th {
+.listTable th {
    text-align: left;
    padding-left: 6px;
 }
-#idList th, #idList td {
+.listTable th, .listTable td {
    padding: 3px;
    border: 1px solid;
 }
@@ -151,20 +151,15 @@ body {
 
 tr:nth-of-type(odd) {
   background-color:#ccc;
-} 
+}
 
-#idList tr.clSelected {
+.listTable tr.clSelected {
    background-color: blue;
    color: white;
 }
 
 /* Gestaltung von Formularen */
 
-/* das Formular nochmals zusätzlich gestalten */
-#idForm .clContentArea {
-   width: 500px;
-   margin: auto;
-}
 
 .clFormRow {
    position: relative; /* damit das Element in jedem Fall "positioniert" ist und damit als Bezugspunkt geeignet ist */

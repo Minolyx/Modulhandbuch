@@ -1,20 +1,27 @@
 [
   {
-    "beschreibung": "",
-    "id": 2,
     "kurz": "TEST",
-    "kreditpunkte": 0,
-    "bezeichnung": "Test Modul 2 3",
+    "bezeichnung": "Ein weiteres Modul",
+    "kreditpunkte": 1,
+    "id": 3,
+    "lehrveranstaltungen": [],
     "sws": 0,
-    "lehrveranstaltungen": []
+    "beschreibung": ""
   },
   {
-    "beschreibung": "",
-    "id": 3,
     "kurz": "TEST",
-    "kreditpunkte": 0,
-    "bezeichnung": "Test Modul",
+    "bezeichnung": "Ein weiteres Modul 234",
+    "kreditpunkte": 123,
+    "id": 4,
     "sws": 0,
-    "lehrveranstaltungen": []
+    "beschreibung": ""
+  },
+  {
+    "kurz": "123",
+    "bezeichnung": "Neues Modul",
+    "kreditpunkte": 23,
+    "id": 5,
+    "sws": 23,
+    "beschreibung": "24"
   }
 ]

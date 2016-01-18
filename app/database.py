@@ -18,7 +18,7 @@ class Database(object):
                 return benutzer["id"]
         return None
 
-    def getModulTemplate(self,id=None,bezeichnung=None,kurz=None,kreditpunkte=None,sws=None,beschreibung=None,lehrveranstaltungen=None):
+    def getModulTemplate(self,id=None,bezeichnung=None,kurz=None,kreditpunkte=None,sws=None,beschreibung=None):
 
         id = 0 if id is None else int(id)
         bezeichnung = "" if bezeichnung is None else bezeichnung
@@ -26,7 +26,6 @@ class Database(object):
         kreditpunkte = 0 if kreditpunkte is None else int(kreditpunkte)
         sws = 0 if sws is None else int(sws)
         beschreibung = "" if beschreibung is None else beschreibung
-        lehrveranstaltungen = [] if lehrveranstaltungen is None else lehrveranstaltungen
 
         return {
             'id': id,
@@ -34,30 +33,31 @@ class Database(object):
             'kurz': kurz,
             'kreditpunkte': kreditpunkte,
             'sws': sws,
-            'beschreibung': beschreibung,
-            'lehrveranstaltungen' :lehrveranstaltungen
+            'beschreibung': beschreibung
         }
 
-    def getStudiengangTemplate(self,id=None,bezeichnung=None,kurz=None,semester=None):
+    def getStudiengangTemplate(self,id=None,bezeichnung=None,kurz=None,semester=None,lehrveranstaltungen=None):
         id = 0 if id is None else int(id)
         bezeichnung = "" if bezeichnung is None else bezeichnung
         kurz = "" if kurz is None else kurz
         semester = 0 if semester is None else int(semester)
+        lehrveranstaltungen = [] if lehrveranstaltungen is None else lehrveranstaltungen
         return {
             'id': id,
             'bezeichnung': bezeichnung,
             'kurz': kurz,
-            'semester': semester
+            'semester': semester,
+            'lehrveranstaltungen':lehrveranstaltungen
         }
 
     def updateModul(self,id,bezeichnung,kurz,kreditpunkte,sws,beschreibung):
         entry = self.getModulTemplate(id,bezeichnung,kurz,kreditpunkte,sws,beschreibung)
-        modul = self.getModul(id)
-        entry["lehrveranstaltungen"] = modul["lehrveranstaltungen"]
         return self.updateEntry(self.modulFile,id,entry)
 
     def updateStudiengang(self,id,bezeichnung,kurz,semester):
         entry = self.getStudiengangTemplate(id,bezeichnung,kurz,semester)
+        modul = self.getStudiengang(id)
+        entry["lehrveranstaltungen"] = modul["lehrveranstaltungen"]
         return self.updateEntry(self.studiengangFile,id,entry)
 
     def updateLehrveranstaltung(self,studiengang,modul,bezeichnung):
@@ -86,7 +86,7 @@ class Database(object):
         self.appendEntry(self.studiengangFile,entry)
         return id
 
-    def putLehrveranstaltung(self,studiengang,modul):
+    def putLehrveranstaltung(self,studiengang,modul,semester,bezeichnung):
         modul = self.getModul(modul)
         data = Database.readFile(self.studiengangFile)
         for entry in data:
@@ -94,7 +94,7 @@ class Database(object):
                 for lv in data[entry]["lehrveranstaltungen"]:
                     if(lv["id"] == modul["id"]):
                         return False
-                md = {"bezeichnung":modul["bezeichnung"],"id":modul["id"]}
+                md = {"semester":semester,"bezeichnung":bezeichnung,"id":modul["id"]}
                 data[entry]["lehrveranstaltungen"].append(md);
                 Database.writeFile(self.studiengangFile,data)
                 return True
@@ -106,27 +106,68 @@ class Database(object):
     def getStudiengang(self,id=None):
         return self.getEntry(self.studiengangFile,id)
 
-    def getLehrveranstaltung(self,studiengang):
+    def getLehrveranstaltung(self):
+        data = self.getStudiengang()
+        if data is None:
+            return None
+        for studiengang in data:
+            for lehrveranstaltung in data[studiengang]['lehrveranstaltungen']:
+                lehrveranstaltung["modul"] = self.getModul(lehrveranstaltung["id"])
+            data[studiengang]['lehrveranstaltungen'] = sorted(data[studiengang]['lehrveranstaltungen'] , key=itemgetter('bezeichnung'))#, reverse=True
+        return data
+
+    def getSemesterplan(self,studiengang):
         data = self.getStudiengang(studiengang)
         if data is None:
             return None
 
+        kreditpunkte = 0;
+        semester = {}
+
         for lehrveranstaltung in data['lehrveranstaltungen']:
             lehrveranstaltung["modul"] = self.getModul(lehrveranstaltung["id"])
+
+            kreditpunkte = kreditpunkte + lehrveranstaltung["modul"]["kreditpunkte"]
+
+            currentSemester = semester.get(lehrveranstaltung["semester"],None);
+            if currentSemester is None:
+                semester[lehrveranstaltung["semester"]] = {"kreditpunkte":lehrveranstaltung["modul"]["kreditpunkte"]}
+            else:
+                semester[lehrveranstaltung["semester"]]["kreditpunkte"] = (semester[lehrveranstaltung["semester"]]["kreditpunkte"]+lehrveranstaltung["modul"]["kreditpunkte"])
+
+
+
+        for s in semester:
+            semester[s]["lehrveranstaltungen"] = []
+            for l in data["lehrveranstaltungen"]:
+                if(l["semester"] == s):
+                    semester[s]["lehrveranstaltungen"].append(l);
+            semester[s]["lehrveranstaltungen"] = sorted(semester[s]["lehrveranstaltungen"] , key=itemgetter('bezeichnung'))
+
+        data["semester"] = sorted(semester.items())
+        data['kreditpunkte'] = kreditpunkte
+        del data['lehrveranstaltungen']
+
         return data
+
+
 
     def deleteModul(self,id):
         data = Database.readFile(self.studiengangFile)
         for entry in data:
             for lehrveranstaltung in data[entry["id"]]["lehrveranstaltungen"]:
                 if lehrveranstaltung["id"] == id:
-                    return False
+                    return None
 
-        return self.deleteEntry(self.modulFile,id)
+        if self.deleteEntry(self.modulFile,id) :
+            return id
+        return None
 
 
     def deleteStudiengang(self,id):
-        return self.deleteEntry(self.studiengangFile,id)
+        if self.deleteEntry(self.studiengangFile,id):
+            return id
+        return None
 
     def deleteLehrveranstaltung(self,studiengang,modul):
         data = Database.readFile(self.studiengangFile)

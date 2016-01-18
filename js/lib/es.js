@@ -71,7 +71,7 @@ var EventService_cl = Class.create({
       }
    },
    publish_px: function (Message_spl, Data_opl) {
-      console.info('es - publish ' + Message_spl);
+      console.info('es - publish ' + Message_spl +": "+ Data_opl.toString());
       each(this.Subscriber_o, function (value_apl, key_spl) {
             // geliefert wird jeweils ein Wert, hier ein Array, und der Key
             if (key_spl == Message_spl) {
