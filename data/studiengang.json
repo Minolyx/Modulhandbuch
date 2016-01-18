@@ -1,5 +1,5 @@
 [
-	{"id":"0", "bezeichnung": "Informatik", "kurz": "Info", "semester": 6},
-	{"id":"1", "bezeichnung": "Betriebswirtschaftslehre", "kurz": "BWL", "semester": 6}
+	{"id":0, "bezeichnung": "Informatik", "kurz": "Info", "semester": 6},
+	{"id":1, "bezeichnung": "Betriebswirtschaftslehre", "kurz": "BWL", "semester": 6}
 ]
 

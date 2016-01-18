@@ -6,7 +6,7 @@ import cherrypy
 from app import database
 
 """
-
+d
 Anforderung       GET          PUT          POST          DELETE
 ----------------------------------------------------------------
 /                 Liste       Dokument     -             -
@@ -62,10 +62,10 @@ class Request(object):
         return json.dumps(response)
 
     def POST(self, id, bezeichnung,kurz,semester):
-        response = dict(id=None)
+        response = dict(success=None)
 
-        response['id'] = self.db.updateStudiengang(bezeichnung,kurz,semester)
-        if response['id'] is None:
+        response['success'] = self.db.updateStudiengang(id,bezeichnung,kurz,semester)
+        if not response["success"]:
             cherrypy.response.status = 404
 
         return json.dumps(response)

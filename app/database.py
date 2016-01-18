@@ -65,15 +65,15 @@ class Database(object):
 
     def updateModul(self,id,bezeichnung,kurz,kreditpunkte,sws,beschreibung):
         entry = self.getModulTemplate(id,bezeichnung,kurz,kreditpunkte,sws,beschreibung)
-        self.updateEntry(self.modulFile,id,entry)
+        return self.updateEntry(self.modulFile,id,entry)
 
     def updateLehrveranstaltung(self,id,modul,studiengang,semester,typ,datum,uhrzeit,raum):
-        entry = self.getLehrveranstaltung(id,modul,studiengang,semester,typ,datum,uhrzeit,raum)
-        self.updateEntry(self.lehrveranstaltungFile,id,entry)
+        entry = self.getLehrveranstaltungTemplate(id,modul,studiengang,semester,typ,datum,uhrzeit,raum)
+        return self.updateEntry(self.lehrveranstaltungFile,id,entry)
 
     def updateStudiengang(self,id,bezeichnung,kurz,semester):
-        entry = self.getStudiengang(id,id,bezeichnung,kurz,semester)
-        self.updateEntry(self.studiengangFile,id,entry)
+        entry = self.getStudiengangTemplate(id,bezeichnung,kurz,semester)
+        return self.updateEntry(self.studiengangFile,id,entry)
 
     def putModul(self,bezeichnung,kurz,kreditpunkte,sws,beschreibung):
         id = self.nextId(self.modulFile)
@@ -106,41 +106,40 @@ class Database(object):
         return self.getEntry(self.studiengangFile,id)
 
     def deleteModul(self,id):
-        self.deleteEntry(self.modulFile,id)
+        return self.deleteEntry(self.modulFile,id)
 
     def deleteLehrveranstaltung(self,id):
-        self.deleteEntry(self.lehrveranstaltungFile,id)
+        return self.deleteEntry(self.lehrveranstaltungFile,id)
 
     def deleteStudiengangFile(self,id):
-        self.deleteEntry(self.studiengangFile,id)
+        return self.deleteEntry(self.studiengangFile,id)
 
     @staticmethod
     def deleteEntry(file,id):
         data = Database.readFile(file)
-        newData = {}
-        result = False
-        for entry in data:
-            if entry.id != id:
-                newData.append(entry)
-            else:
-                result = True
-        Database.writeFile(file,newData)
 
-        return result
+        if data.get(int(id),None) is None:
+            return False
+        else:
+            del(data[int(id)])
+            Database.writeFile(file,data)
+            return True
 
     @staticmethod
     def updateEntry(file,id,updatedEntry):
         data = Database.readFile(file)
-        data[id] = updatedEntry
-        Database.writeFile(file,data)
+        if data.get(int(id),None) is None:
+            return False
+        else:
+            data[int(id)] = updatedEntry
+            Database.writeFile(file,data)
+            return True
 
     @staticmethod
-    def appendEntry(file,data):
-        with open(file, 'r') as pathfile:
-            content = json.load(pathfile)
-        content.append(data)
-
-        Database.writeFile(file,content)
+    def appendEntry(file,entry):
+        data = Database.readFile(file)
+        data[entry["id"]]=entry
+        Database.writeFile(file,data)
 
     @staticmethod
     def getEntry(file,id=None):
@@ -148,17 +147,25 @@ class Database(object):
             return Database.readFile(file)
         else:
             data = Database.readFile(file)
-            return data.get(id,None)
+            return data.get(int(id),None)
 
     @staticmethod
     def nextId(file):
         data = Database.readFile(file)
-        return data[len(data)-1].id + 1;
+        biggestIndex = 0
+        for entry in data:
+            if int(entry) > biggestIndex:
+                biggestIndex = int(entry)
+        return biggestIndex + 1;
     
     @staticmethod
     def writeFile(file,data):
+        result = []
+        for entry in data:
+            result.append(data[entry])
+
         with open(file, 'w') as pathfile:
-            json.dumps(data, pathfile)
+            json.dump(result, pathfile, indent=2)
 
     @staticmethod
     def readFile(file):
@@ -169,7 +176,6 @@ class Database(object):
         data = sorted(data, key=itemgetter('id'))
 
         for entry in data:
-            id = entry["id"]
-            result[id] = entry
+            result[int(entry["id"])] = entry
         return result;
 # EOF
