@@ -1,7 +1,26 @@
 [
-	{"id":1, "bezeichnung": "Technische Grundlagen der Informatik 1", "kurz": "TGI1", "kreditpunkte": 6, "sws": 6,"beschreibung":""},
-	{"id":2, "bezeichnung": "Einführung in die Programmierung", "kurz": "EPR", "kreditpunkte": 6, "sws": 6,"beschreibung":""},
-	{"id":3, "bezeichnung": "Mathematik 2", "kurz": "MAT2", "kreditpunkte": 6, "sws": 6,"beschreibung":""},
-	{"id":4, "bezeichnung": "Mathematik 1", "kurz": "MAT1", "kreditpunkte": 6, "sws": 6,"beschreibung":""}
+  {
+    "beschreibung": "",
+    "sws": 6,
+    "kurz": "EPR",
+    "bezeichnung": "Einf\u00c3\u00bchrung in die Programmierung",
+    "id": 2,
+    "kreditpunkte": 6
+  },
+  {
+    "beschreibung": "",
+    "sws": 6,
+    "kurz": "MAT2",
+    "bezeichnung": "Mathematik 2",
+    "id": 3,
+    "kreditpunkte": 6
+  },
+  {
+    "beschreibung": "",
+    "sws": 6,
+    "kurz": "MAT1",
+    "bezeichnung": "Mathematik 1",
+    "id": 4,
+    "kreditpunkte": 6
+  }
 ]
-

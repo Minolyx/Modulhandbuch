@@ -111,7 +111,7 @@ class Database(object):
     def deleteLehrveranstaltung(self,id):
         return self.deleteEntry(self.lehrveranstaltungFile,id)
 
-    def deleteStudiengangFile(self,id):
+    def deleteStudiengang(self,id):
         return self.deleteEntry(self.studiengangFile,id)
 
     @staticmethod

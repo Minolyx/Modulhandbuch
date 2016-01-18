@@ -10,7 +10,7 @@ d
 Anforderung       GET          PUT          POST          DELETE
 ----------------------------------------------------------------
 /                 Liste       Dokument     -             -
-                  Studiengang anlegen
+                  Modul       anlegen
                   liefern
 
 /0                Dokument                 -             -
@@ -35,19 +35,19 @@ class Request(object):
         response = dict(data=None)
 
         if id == "0":
-            response['data'] = self.db.getStudiengangTemplate()
+            response['data'] = self.db.getModulTemplate()
         else:
-            response['data'] = self.db.getStudiengang(id)
+            response['data'] = self.db.getModul(id)
 
         if response['data'] is None:
             cherrypy.response.status = 404
 
         return json.dumps(response)
 
-    def PUT(self, bezeichnung,kurz,semester):
+    def PUT(self, bezeichnung,kurz,kreditpunkte,sws,beschreibung):
         response = dict(id=None)
 
-        response['id'] = self.db.putStudiengang(bezeichnung,kurz,semester)
+        response['id'] = self.db.putModul(bezeichnung,kurz,kreditpunkte,sws,beschreibung)
 
         if response['id'] is None:
             cherrypy.response.status = 409
@@ -56,15 +56,15 @@ class Request(object):
 
     def DELETE(self,id):
         response = dict(success=False)
-        response["success"] = self.db.deleteStudiengang(id)
+        response["success"] = self.db.deleteModul(id)
         if not response["success"]:
             cherrypy.response.status = 404
         return json.dumps(response)
 
-    def POST(self, id, bezeichnung,kurz,semester):
+    def POST(self, id, bezeichnung,kurz,kreditpunkte,sws,beschreibung):
         response = dict(success=None)
 
-        response['success'] = self.db.updateStudiengang(id,bezeichnung,kurz,semester)
+        response['success'] = self.db.updateModul(id,bezeichnung,kurz,kreditpunkte,sws,beschreibung)
         if not response["success"]:
             cherrypy.response.status = 404
 
