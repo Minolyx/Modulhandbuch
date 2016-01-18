@@ -18,7 +18,7 @@ STUDAPP.Semesterplan = Class.create({
     render: function (data) {
         $.ajax({
                 dataType: "json",
-                url: '/lehrveranstaltung/0',
+                url: '/lehrveranstaltung/1',
                 type: 'GET'
             })
             .done($.proxy(this.doRender, this))
