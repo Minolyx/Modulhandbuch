@@ -3,18 +3,18 @@
 import json
 import cherrypy
 
-from app import database, template
+from app import database
 
 """
 
 Anforderung       GET          PUT          POST          DELETE
 ----------------------------------------------------------------
-/                 Liste       -            -             -
-                  Studiengang
+/                 Liste       Dokument     -             -
+                  Studiengang anlegen
                   liefern
 
-/0                Dokument     Dokument     -             -
-                  mit id=0     anlegen      
+/0                Dokument                 -             -
+                  mit id=0
                   liefern
                   (Vorgabe-Werte)
 
@@ -22,93 +22,50 @@ Anforderung       GET          PUT          POST          DELETE
                   mit {id}                  ändern        löschen
                   liefern
 
-id > 0 ! 
-
 """
 
 
-class Studiengang_cl(object):
+class Request(object):
     exposed = True
 
     def __init__(self):
-        self.db_o = database.Database_cl()
+        self.db = database.Database()
 
     def GET(self, id = None):
-        retVal_o = {
-            'data': None
-        }
-        if id is None:
-            # Anforderung der Liste
-            retVal_o['data'] = self.getList_p()
-        else:
-            # Anforderung eines Dokuments
-            retVal_o['data'] = self.getForm_p(id)
+        response = dict(data=None)
 
-        if retVal_o['data'] is None:
+        if id == "0":
+            response['data'] = self.db.getStudiengangTemplate()
+        else:
+            response['data'] = self.db.getStudiengang(id)
+
+        if response['data'] is None:
             cherrypy.response.status = 404
 
-        return json.dumps(retVal_o)
+        return json.dumps(response)
 
-    def PUT(self, **data_opl):
-        retVal_o = {
-            'id': None
-        }
-        # data_opl: Dictionary mit den gelieferten key-value-Paaren
-        # hier müsste man prüfen, ob die Daten korrekt vorliegen!
+    def PUT(self, bezeichnung,kurz,semester):
+        response = dict(id=None)
 
-        data_o = {
-            'studiengang': data_opl["studiengang_s"],
-            'kurzBezeichnung': data_opl["kurzBezeichnung_s"],
-            'semesterAnzahl': data_opl["semesterAnzahl_s"]
-        }
-        # Create-Operation
-        id_s = self.db_o.create_px(data_o)
-        retVal_o['id'] = id_s
-        if id_s is None:
+        response['id'] = self.db.putStudiengang(bezeichnung,kurz,semester)
+
+        if response['id'] is None:
             cherrypy.response.status = 409
 
-        return json.dumps(retVal_o)
+        return json.dumps(response)
 
-    def POST(self, id, **data_opl):
-        retVal_o = {
-            'id': None
-        }
-
-        id_s = data_opl["id_s"]
-        data_o = {
-            'studiengang': data_opl["studiengang_s"],
-            'kurzBezeichnung': data_opl["kurzBezeichnung_s"],
-            'semesterAnzahl': data_opl["semesterAnzahl_s"]
-        }
-        retVal_o['id_s'] = id_s
-        if self.db_o.update_px(id_s, data_o):
-            pass
-        else:
+    def DELETE(self,id):
+        response = dict(success=False)
+        response["success"] = self.db.deleteStudiengangFile(id)
+        if not response["success"]:
             cherrypy.response.status = 404
-        return json.dumps(retVal_o)
+        return json.dumps(response)
 
-    def DELETE(self, id):
-        # Studiengang mit der Id :studiengang-id löschen
-        # fehlt: Bestehende Lehrveranstaltungen und deren Zuordnung zu Modulen
-        # werden entfernt
-        retVal_o = {
-            'id': id
-        }
+    def POST(self, id, bezeichnung,kurz,semester):
+        response = dict(id=None)
 
-        if self.db_o.delete_px(id):
-            pass
-        else:
+        response['id'] = self.db.updateStudiengang(bezeichnung,kurz,semester)
+        if response['id'] is None:
             cherrypy.response.status = 404
 
-        return json.dumps(retVal_o)
-
-    def getList_p(self):
-        data_o = self.db_o.read_px()
-        return data_o
-
-    def getForm_p(self, id_spl):
-        data_o = self.db_o.read_px(id_spl)
-        if data_o != None:
-            return self.view_o.createForm_px(id_spl, data_o)
-        else:
-            return None
+        return json.dumps(response)

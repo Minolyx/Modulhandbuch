@@ -23,7 +23,7 @@ Anforderung       GET          PUT          POST          DELETE
 """
 
 #----------------------------------------------------------
-class Template_cl(object):
+class Request(object):
 #----------------------------------------------------------
 
    exposed = True # gilt für alle Methoden

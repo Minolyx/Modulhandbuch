@@ -1,0 +1,7 @@
+[
+	{"id":"0", "bezeichnung": "Mathematik 1", "kurz": "MAT1", "kreditpunkte": 6, "sws": 6,"beschreibung":""},
+	{"id":"1", "bezeichnung": "Technische Grundlagen der Informatik 1", "kurz": "TGI1", "kreditpunkte": 6, "sws": 6,"beschreibung":""},
+	{"id":"2", "bezeichnung": "Einführung in die Programmierung", "kurz": "EPR", "kreditpunkte": 6, "sws": 6,"beschreibung":""},
+	{"id":"3", "bezeichnung": "Mathematik 2", "kurz": "MAT2", "kreditpunkte": 6, "sws": 6,"beschreibung":""}
+]
+
