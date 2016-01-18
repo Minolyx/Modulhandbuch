@@ -8,7 +8,15 @@ class Database(object):
 
     modulFile = "./data/modul.json"
     studiengangFile = "./data/studiengang.json"
+    benutzerFile = "./data/benutzer.json"
 
+    def login(self,benutzername,passwort):
+        data = Database.readFile(self.benutzerFile)
+        for key in data:
+            benutzer = data[key]
+            if benutzer["benutzername"] == benutzername and benutzer["passwort"] == passwort:
+                return benutzer["id"]
+        return None
 
     def getModulTemplate(self,id=None,bezeichnung=None,kurz=None,kreditpunkte=None,sws=None,beschreibung=None,lehrveranstaltungen=None):
 
