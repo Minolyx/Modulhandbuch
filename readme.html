@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h1 id="modulhandbuch">Modulhandbuch</h1>
+<h2 id="autor-gruppe-e">Autor (Gruppe E)</h2>
+<ul>
+<li>Sven (975524)</li>
+</ul>
+<p>Letzte Änderung: 17.01.2016</p>
+<h2 id="einleitung">1. Einleitung</h2>
+<ul>
+<li>allgemeine Beschreibung Ihrer Lösung</li>
+</ul>
+<h2 id="implementierung-des-servers">2.Implementierung des Servers</h2>
+<h3 id="rest-interface">2.1 Rest-Interface</h3>
+<ul>
+<li><p>beschreiben Sie alle Anforderungen an den Server, die dem Architekturprinzip REST entsprechen</p>
+<ul>
+<li><em>Addressierbarkeit</em>: Jeder Ressource wird eine eindeutige URI zugewiesen.</li>
+<li><em>Zustandslosigkeit</em>: Kommunikation erfolgt zustandslos, d.h. es gibt keine Benutzersitzungen. Alle notwendigen Informationen werden neu mitgeschickt.</li>
+<li><em>Einheitliche Schnittstellen</em>: Der Zugriff auf Ressourcen erfolgt über einen einheitlichen Satz von Standardmethoden (hier: Standard-HTTP-Methoden).</li>
+</ul></li>
+</ul>
+<h3 id="module">2.2 Module</h3>
+<ul>
+<li>geben Sie alle Python-Module an
+<ul>
+<li>beschreiben Sie die Aufgabe des Moduls</li>
+</ul></li>
+<li>geben Sie für jedes Python-Modul an, welche Klassen es enthält
+<ul>
+<li>beschreiben Sie die Aufgabe der jeweiligen Klasse</li>
+</ul></li>
+<li>geben Sie für jede Klasse die öffentlichen Methoden an
+<ul>
+<li>beschreiben Sie die Aufgabe der jeweiligen Methode</li>
+</ul></li>
+<li>beschreiben Sie das Zusammenwirken der Module</li>
+</ul>
+<h4 id="database.py">database.py</h4>
+<p>Bearbeitet alle Anfragen der HTTP-Methoden.<br />
+Enthaltene Klasse: <em>Database</em></p>
+<p>Methoden:</p>
+<p><em>login</em><br />
+Überprüft ob es den Benutzer gibt und das Passwort stimmt. Liefert gegebenenfalls die ID des Benutzers zurück.</p>
+<p><em>getModulTemplate/getStudiengangTemplate</em><br />
+liefert das jeweilige Template gefüllt mit den übergebenen Parametern.</p>
+<p><em>updateModul/updateLehrveranstaltung/updateStudiengang</em><br />
+erstellt einen Eintrag mithilfe der jeweiligen get&lt;...&gt;Template Methode und übergibt diesen an die Methode updateEntry.</p>
+<p><em>putModul/putLehrveranstaltung/putStudiengang</em><br />
+erstellt einen Eintrag mithilfe der jeweiligen get&lt;...&gt;Template Methode und übergibt diesen an die Methode appendEntry.</p>
+<p><em>getModul/getLehrveranstaltung/getStudiengang</em><br />
+übergibt ID des gesuchten Eintrags und den Pfad der entsprechenden .json an getEntry und liefert den Rückgabewert</p>
+<p><em>getSemesterPlan</em><br />
+stellt alle zur Erstellung des Semesterplans eines Studiengangs benötigten Informationen geordnet und -sofern nötig- sortiert zusammen.</p>
+<p><em>deleteModul/deleteLehrveranstaltung/deleteStudiengang</em><br />
+übergibt ID des gesuchten Eintrags und den Pfad der entsprechenden .json an deleteEntry und liefert den Rückgabewert</p>
+<p><em>getEntry</em><br />
+liefert den Eintrag mit der entsprechenden ID bzw alle Einträge wenn ID = 0<br />
+<em>deleteEntry</em><br />
+löscht den Eintrag mit der entsprechenden ID</p>
+<p><em>appendEntry</em><br />
+fügt der übergebenen .json den Eintrag hinzu</p>
+<p><em>updateEntry</em><br />
+aktualisiert einen Eintrag mit der entsprechendend ID in der übergebenen .json</p>
+<p><em>nextId</em><br />
+liefert die nächste ID in der übergebenen .json</p>
+<p><em>writeFile</em><br />
+schreibt übergebene Daten in die übergebene .json</p>
+<p><em>readFile</em><br />
+liest alle Einträge aus der übergebenen .json</p>
+<h4 id="studiengang.py">studiengang.py</h4>
+<p>API /studiengang<br />
+Enthaltene Klasse: <em>Request</em></p>
+<p>Methoden:</p>
+<p><em>GET</em><br />
+liefert entsprechende Liste, Dokument oder Formular</p>
+<p><em>PUT</em><br />
+legt einen neuen Studiengang an und liefert ID des angelegten Studiengangs</p>
+<p><em>POST</em><br />
+bearbeitet einen Studiengang und liefert Bestätigung</p>
+<p><em>DELETE</em><br />
+löscht einen Studiengang und liefert Bestätigung</p>
+<h4 id="modul.py">modul.py</h4>
+<p>API /modul<br />
+Enthaltene Klasse: <em>Request</em></p>
+<p>Methoden:</p>
+<p><em>GET</em><br />
+liefert entsprechende Liste, Dokument oder Formular</p>
+<p><em>PUT</em><br />
+legt ein neues Modul an und liefert ID des angelegten Moduls</p>
+<p><em>POST</em><br />
+bearbeitet ein Modul und liefert Bestätigung</p>
+<p><em>DELETE</em><br />
+löscht ein Modul und liefert Bestätigung</p>
+<h4 id="lehrveranstaltung.py">lehrveranstaltung.py</h4>
+<p>API /lehrveranstaltung<br />
+Enthaltene Klasse: <em>Request</em></p>
+<p>Methoden:</p>
+<p><em>GET</em><br />
+liefert Liste der Lehrveranstaltungen im Studiengang</p>
+<p><em>PUT</em><br />
+ordnet die Lehrveranstaltung einem Modul zu</p>
+<p><em>POST</em><br />
+ändert die Bezeichnung der Zuordnung (bzw Lehrveranstaltung)</p>
+<p><em>DELETE</em><br />
+entfernt die Zuordnungen der Lehrveranstaltung</p>
+<h4 id="template.py">template.py</h4>
+<p>API /template<br />
+Enthaltene Klasse: <em>Request</em></p>
+<p>Methoden:</p>
+<p><em>GET</em><br />
+liefert alle vorhandenen Templates</p>
+<h4 id="login.py">login.py</h4>
+<p>API /login<br />
+Enthaltene Klasse: <em>Request</em></p>
+<p>Methoden:</p>
+<p><em>PUT</em><br />
+liefert ID des aktuellen Benutzers</p>
+<h3 id="datenhaltung">2.3 Datenhaltung</h3>
+<p>Alle Daten werden in .json-Dateien in /data/ abgelegt.<br />
+Alle Studiengänge werden in der <em>studiengang.json</em> abgelegt.<br />
+Alle Module werden in der <em>modul.json</em> abgelegt.<br />
+Lehrveranstaltungen werden in der <em>studiengang.json</em> unter den Studiengängen<br />
+denen sie zugeordnet wurden eingetragen.<br />
+Alle Bentuzer werden in der <em>benutzer.json</em> abgelegt.</p>
+<h2 id="implementierung-des-clients">3. Implementierung des Clients</h2>
+<h3 id="klassen">3.1 Klassen</h3>
+<ul>
+<li>geben Sie alle Klassen an</li>
+<li>beschreiben Sie deren Aufgaben</li>
+<li>beschreiben Sie das Zusammenwirken der Instanzen der Klassen</li>
+</ul>
+<h4 id="studapp.app"><em>STUDAPP.App</em></h4>
+<h4 id="studapp.menu"><em>STUDAPP.Menu</em></h4>
+<h4 id="studapp.modulliste"><em>STUDAPP.ModulListe</em></h4>
+<h4 id="studapp.modulform"><em>STUDAPP.ModulForm</em></h4>
+<h4 id="studapp.modulhandbuch"><em>STUDAPP.Modulhandbuch</em></h4>
+<h4 id="studapp.navigation"><em>STUDAPP.Navigation</em></h4>
+<h4 id="studapp.semesterplan"><em>STUDAPP.Semesterplan</em></h4>
+<h4 id="studapp.studiengangliste"><em>STUDAPP.StudiengangListe</em></h4>
+<h3 id="eventservice">3.2 Eventservice</h3>
+<ul>
+<li>beschreiben Sie den Einsatz des Eventservice</li>
+</ul>
+<h3 id="templateverarbeitung">3.3 Templateverarbeitung</h3>
+<ul>
+<li>beschreiben Sie die verwendeten Templates</li>
+</ul>
+<h4 id="lehrveranstaltunglist.tpl"><em>lehrveranstaltungList.tpl</em></h4>
+<p>Liste aller Lehrveranstaltungen.</p>
+<h4 id="modul.tpl"><em>modul.tpl</em></h4>
+<p>Liste der aller Module.</p>
+<h4 id="modulhandbuch.tpl"><em>modulhandbuch.tpl</em></h4>
+<p>Ausgabe des Modulhandbuchs eines Studiengangs.</p>
+<h4 id="modullist.tpl"><em>modulList.tpl</em></h4>
+<p>Listen für die Zuordnong bei der Bearbeitung eines Studiengangs.</p>
+<h4 id="semesterplan.tpl"><em>semesterplan.tpl</em></h4>
+<p>Ausgabe des Semesterplans eines Studiengangs.</p>
+<h4 id="studiengang.tpl"><em>studiengang.tpl</em></h4>
+<p>Liste aller Studiengänge.</p>
+<h2 id="prüfung-markup-und-stilregeln">4. Prüfung Markup und Stilregeln</h2>
+<ul>
+<li>beschreiben Sie die Überprüfung des generierten Markups und der CSS-Stilregeln mit den W3C-Validatordiensten</li>
+</ul>
+<p>Zur Überprüfung des generierten Markups wurde der Quelltext in das Eingabefeld auf http://validator.w3.org/#validate_by_input hineinkopiert.</p>
+<p>Zur Überprüfung der CSS-Stilregeln wurde der Inhalt der custom.css in das Eingabefeld auf http://jigsaw.w3.org/css-validator/#validate_by_input hinkopiert.</p>
+</body>
+</html>
