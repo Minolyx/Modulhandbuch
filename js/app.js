@@ -17,16 +17,23 @@ STUDAPP.App = Class.create({
         this.modulhandbuch = new STUDAPP.Modulhandbuch();
         this.semesterplan = new STUDAPP.Semesterplan();
 
+        STUDAPP.templateManager = new TELIB.TemplateManager_cl();
+
+        if(STUDAPP.hasToLogin)
+            this.login = new STUDAPP.Login();
+
         this.menu = new STUDAPP.Menu();
         STUDAPP.eventService.subscribe_px(this, 'app');
     },
    notify_px: function (self, message, data) {
+       if(STUDAPP.hasToLogin){
+           self.setContent(self.login, data[1]);
+           STUDAPP.eventService.publish_px('menu', ["loginButtons"]);
+           return;
+       }
       switch (message) {
       case 'app':
         switch (data[0]) {
-            case 'init':
-                STUDAPP.templateManager = new TELIB.TemplateManager_cl();
-                break;
             case 'modulList':
                 self.setContent(self.modulListe, data[1]);
                 STUDAPP.eventService.publish_px('menu', ["setContext", "modul"]);

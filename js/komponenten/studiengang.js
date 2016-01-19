@@ -57,7 +57,8 @@ STUDAPP.StudiengangListe = Class.create({
         $.ajax({
                 dataType: "json",
                 url: '/lehrveranstaltung/',
-                type: 'GET'
+                type: 'GET',
+            data:{user:STUDAPP.user}
             })
             .done($.proxy(this.doRender, this))
             .fail(function(jqXHR, textStatus) {
@@ -128,8 +129,8 @@ STUDAPP.StudiengangForm = Class.create({
                 if (this.isModified()) {
                     if (this.checkContent()) {
                         // kein klassisches submit, es wird auch keine neue Anzeige vorgenommen
-                        var path = '/studiengang';
-                        var data = $("#idForm").serialize();
+                        var path = '/studiengang/';
+                        var data = $("#idForm").serialize()+"&user="+STUDAPP.user;
                         var type = 'POST';
                         var id = $('#idForm #id').val();
                         if (id == 0) {
@@ -179,14 +180,15 @@ STUDAPP.StudiengangForm = Class.create({
     render: function (data) {
         var path;
         if (this.data != undefined && this.data["id"] != undefined && data) {
-            path = '/studiengang/' + this.data["id"];
+            path = '/studiengang/' + this.data["id"]+"/";
         } else {
-            path = '/studiengang/0';
+            path = '/studiengang/0/';
         }
         $.ajax({
                 dataType: "json",
                 url: path,
-                type: 'GET'
+                type: 'GET',
+                data:{user:STUDAPP.user}
             })
             .done($.proxy(this.doRender, this))
             .fail(function(jqXHR, textStatus) {
@@ -200,7 +202,12 @@ STUDAPP.StudiengangForm = Class.create({
         $('#idForm #bezeichnung').val(data['bezeichnung'])
         $('#idForm #semester').val(data['semester']);
         $('#idForm #kurz').val(data['kurz']);
-        this.renderAssignment(data['id']);
+        if(data['id'] != 0){
+            this.renderAssignment(data['id']);
+            $("#lehrveranstaltungZuordnung").show();
+        }else{
+            $("#lehrveranstaltungZuordnung").hide();
+        }
         this.storeFormContent();
 
         $("#moduleListe").change(function() {
@@ -244,7 +251,7 @@ STUDAPP.StudiengangForm = Class.create({
                 dataType: "json",
                 url: '/lehrveranstaltung/'+studiengang+'/'+modul,
                 type: 'PUT',
-                data:{"bezeichnung":bezeichnung,"semester":semester}
+                data:{"bezeichnung":bezeichnung,"semester":semester,user:STUDAPP.user}
             }).done(function(data){
                 if(data["success"]){
                     that.renderAssignment(studiengang);
@@ -259,7 +266,7 @@ STUDAPP.StudiengangForm = Class.create({
 
             $.ajax({
                 dataType: "json",
-                url: '/lehrveranstaltung/'+studiengang+'/'+modul,
+                url: '/lehrveranstaltung/'+studiengang+'/'+modul+"/?user="+STUDAPP.user,
                 type: 'DELETE'
             }).done(function(data){
                 if(data["success"]){
@@ -284,7 +291,7 @@ STUDAPP.StudiengangForm = Class.create({
             $.ajax({
                 dataType: "json",
                 url: '/lehrveranstaltung/'+studiengang+'/'+modul,
-                type: 'POST',data:{"bezeichnung":bezeichnung,"semester":semester}
+                type: 'POST',data:{"bezeichnung":bezeichnung,"semester":semester,user:STUDAPP.user}
             }).done(function(data){
                 if(data["success"]){
                     that.renderAssignment(studiengang);
@@ -304,7 +311,8 @@ STUDAPP.StudiengangForm = Class.create({
 
         $.ajax({
             dataType: "json",
-            url: '/lehrveranstaltung/'+studiengang,
+            url: '/lehrveranstaltung/'+studiengang+"/",
+            data:{user:STUDAPP.user},
             type: 'GET'
         }).done(function(data){
             var rows = STUDAPP.templateManager.execute_px('lehrveranstaltungList.tpl', data);
@@ -315,6 +323,7 @@ STUDAPP.StudiengangForm = Class.create({
             $.ajax({
                 dataType: "json",
                 url: '/modul/',
+                data:{user:STUDAPP.user},
                 type: 'GET'
             }).done(function(data){
                 var rows = STUDAPP.templateManager.execute_px('modulList.tpl', data);

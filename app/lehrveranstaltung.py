@@ -26,9 +26,14 @@ class Request(object):
     def __init__(self):
         self.db = database.Database()
 
-    def GET(self, studiengang=None):
+    def GET(self, studiengang=None,user=None):
 
         response = dict(data=None)
+
+        if not self.db.canEditModul(user) and not self.db.canEditStudiengang(user):
+            cherrypy.response.status = 403
+            return ""
+
 
         if studiengang is None:
             response['data'] = self.db.getLehrveranstaltung()
@@ -40,10 +45,10 @@ class Request(object):
 
         return json.dumps(response)
 
-
-
-
-    def PUT(self,studiengang,modul,semester,bezeichnung):
+    def PUT(self,studiengang,modul,semester,bezeichnung,user):
+        if not self.db.canEditStudiengang(user):
+            cherrypy.response.status = 403
+            return ""
         response = dict(success=False)
 
         response["success"] = self.db.putLehrveranstaltung(studiengang,modul,semester,bezeichnung)
@@ -53,14 +58,20 @@ class Request(object):
 
         return json.dumps(response)
 
-    def DELETE(self,studiengang,modul):
+    def DELETE(self,studiengang,modul,user):
+        if not self.db.canEditStudiengang(user):
+            cherrypy.response.status = 403
+            return ""
         response = dict(success=None)
         response["success"] = self.db.deleteLehrveranstaltung(studiengang,modul)
         if not response["success"]:
             cherrypy.response.status = 404
         return json.dumps(response)
 
-    def POST(self, studiengang,modul,semester,bezeichnung):
+    def POST(self, studiengang,modul,semester,bezeichnung,user):
+        if not self.db.canEditStudiengang(user):
+            cherrypy.response.status = 403
+            return ""
         response = dict(success=None)
 
         response['success'] = self.db.updateLehrveranstaltung(studiengang,modul,semester,bezeichnung)

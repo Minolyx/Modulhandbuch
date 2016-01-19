@@ -21,7 +21,7 @@ STUDAPP.ModulListe = Class.create({
                 case 'delete':
                     if(data[1] != "modul") return;
                     if (confirm("Soll der Datensatz gelöscht werden?")) {
-                        var path = "/modul/" + this.rowId;
+                        var path = "/modul/" + this.rowId+"?user="+STUDAPP.user;
                         $.ajax({
                                 context: this,
                                 dataType: "json",
@@ -34,7 +34,7 @@ STUDAPP.ModulListe = Class.create({
                                 this.initList();
                             })
                             .fail(function(jqXHR, textStatus) {
-                                alert( "[Liste] Fehler bei Anforderung: " + textStatus);
+                                alert( "Fehler bei der Anforderung: " + jqXHR.status +"("+jqXHR.statusText+")");
                             });
                     }
             }
@@ -57,11 +57,12 @@ STUDAPP.ModulListe = Class.create({
         $.ajax({
                 dataType: "json",
                 url: '/modul/',
+            data:{"user":STUDAPP.user},
                 type: 'GET'
             })
             .done($.proxy(this.doRender, this))
             .fail(function(jqXHR, textStatus) {
-                alert( "[Liste] Fehler bei Anforderung: " + textStatus);
+                alert( "Fehler bei der Anforderung: " + jqXHR.status +"("+jqXHR.statusText+")");
             });
     },
     doRender: function (data) {
@@ -130,7 +131,7 @@ STUDAPP.ModulForm = Class.create({
                     if (this.checkContent()) {
                         // kein klassisches submit, es wird auch keine neue Anzeige vorgenommen
                         var path = '/modul';
-                        var data = $("#idModulForm").serialize();
+                        var data = $("#idModulForm").serialize()+"&user="+STUDAPP.user;
                         var type = 'POST';
                         var id = $('#idModulForm #id').val();
                         if (id == 0) {
@@ -153,7 +154,7 @@ STUDAPP.ModulForm = Class.create({
                                 alert("Speichern ausgeführt!");
                             })
                             .fail(function(jqXHR, textStatus) {
-                                alert( "Fehler bei Anforderung: " + textStatus );
+                                alert( "Fehler bei der Anforderung: " + jqXHR.status +"("+jqXHR.statusText+")");
                             });
 
                     } else {
@@ -180,18 +181,19 @@ STUDAPP.ModulForm = Class.create({
     render: function (data) {
         var path;
         if (this.data != undefined && this.data["id"] != undefined && data) {
-            path = '/modul/' + this.data["id"];
+            path = '/modul/' + this.data["id"]+"/";
         } else {
-            path = '/modul/0';
+            path = '/modul/0/';
         }
         $.ajax({
                 dataType: "json",
                 url: path,
+                data:{"user":STUDAPP.user},
                 type: 'GET'
             })
             .done($.proxy(this.doRender, this))
             .fail(function(jqXHR, textStatus) {
-                alert( "[Form] Fehler bei Anforderung: " + textStatus);
+                alert( "Fehler bei der Anforderung: " + jqXHR.status +"("+jqXHR.statusText+")");
             });
     },
     doRender: function (data) {

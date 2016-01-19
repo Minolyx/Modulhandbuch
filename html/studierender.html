@@ -14,10 +14,16 @@
       <script type="text/javascript" src="/js/lib/te.js"></script>
       <script type="text/javascript" src="/js/tm.js"></script>
 
+      <script type="text/javascript">
+         var STUDAPP = STUDAPP || {};
+         STUDAPP.hasToLogin = false;
+         STUDAPP.user = null;
+      </script>
 
       <script type="text/javascript" src="/js/komponenten/menu.js"></script>
       <script type="text/javascript" src="/js/komponenten/navigation.js"></script>
       <script type="text/javascript" src="/js/komponenten/studiengang.js"></script>
+      <script type="text/javascript" src="/js/komponenten/login.js"></script>
       <script type="text/javascript" src="/js/komponenten/modul.js"></script>
       <script type="text/javascript" src="/js/komponenten/modulhandbuch.js"></script>
       <script type="text/javascript" src="/js/komponenten/semesterplan.js"></script>
@@ -29,7 +35,7 @@
             Web-Engineering: Modulhandbuch
          </h1>
          <p id="idLogin" class="clLogin">
-            <a href="#" data-action="login-form">Login</a>
+            <a href="/mhpflege" data-action="login-form">Login</a>
          </p>
       </header>
       <section id="idContentOuter" class="clContentOuter">

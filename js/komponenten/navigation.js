@@ -8,9 +8,7 @@ STUDAPP.Navigation = Class.create({
     },
     render: function (data) {
         var markup = '<a href="#" data-action="studiengangList">Studiengänge</a> ' +
-            '<a href="#" data-action="modulList">Module</a>' +
-            '<a href="#" data-action="modulhandbuch">Modulhandbuch</a>'+
-            '<a href="#" data-action="semesterplan">Semesterplan</a>';
+            '<a href="#" data-action="modulList">Module</a>';
         $('#idNav').html(markup);
     },
     initHandler: function () {

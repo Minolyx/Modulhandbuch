@@ -31,7 +31,7 @@ class Request(object):
     def __init__(self):
         self.db = database.Database()
 
-    def GET(self, id = None):
+    def GET(self, id = None,user=None):
         response = dict(data=None)
 
         if id == "0":
@@ -44,7 +44,11 @@ class Request(object):
 
         return json.dumps(response)
 
-    def PUT(self, id,bezeichnung,kurz,semester):
+    def PUT(self, id,bezeichnung,kurz,semester,user):
+        if not self.db.canEditStudiengang(user):
+            cherrypy.response.status = 403
+            return ""
+
         response = dict(id=None)
 
         response['id'] = self.db.putStudiengang(bezeichnung,kurz,semester)
@@ -54,16 +58,22 @@ class Request(object):
 
         return json.dumps(response)
 
-    def DELETE(self,id):
+    def DELETE(self,id,user):
+        if not self.db.canEditStudiengang(user):
+            cherrypy.response.status = 403
+            return ""
         response = dict(id=None)
         response["id"] = self.db.deleteStudiengang(id)
         if response["id"] is None:
             cherrypy.response.status = 404
         return json.dumps(response)
 
-    def POST(self, id, bezeichnung,kurz,semester):
-        response = dict(success=None)
+    def POST(self, id, bezeichnung,kurz,semester,user):
+        if not self.db.canEditStudiengang(user):
+            cherrypy.response.status = 403
+            return ""
 
+        response = dict(success=None)
         response['success'] = self.db.updateStudiengang(id,bezeichnung,kurz,semester)
         if not response["success"]:
             cherrypy.response.status = 404

@@ -10,7 +10,18 @@ STUDAPP.Semesterplan = Class.create({
             listView.initList();
             listView.initHandler();
         });
+        STUDAPP.eventService.subscribe_px(this, 'app');
     },
+    updateData: function(data){
+        this.data = data;
+    },
+    notify_px: function (self, message, data) {
+        switch(data[0]) {
+            case "updateFormData":
+                this.updateData(data[1]);
+        }
+    },
+
     close: function () {
         $("#idSemesterplan").hide();
     },
@@ -18,7 +29,8 @@ STUDAPP.Semesterplan = Class.create({
     render: function (data) {
         $.ajax({
                 dataType: "json",
-                url: '/lehrveranstaltung/1',
+                url: '/lehrveranstaltung/'+this.data["id"],
+                data:{user:STUDAPP.user},
                 type: 'GET'
             })
             .done($.proxy(this.doRender, this))

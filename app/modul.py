@@ -31,12 +31,21 @@ class Request(object):
     def __init__(self):
         self.db = database.Database()
 
-    def GET(self, id = None):
+    def GET(self, id = None,user = None):
         response = dict(data=None)
 
         if id == "0":
             response['data'] = self.db.getModulTemplate()
         else:
+            if id is None:
+                if not self.db.canEditStudiengang(user):
+                    cherrypy.response.status = 403
+                    return ""
+            else:
+                if not self.db.canEditModul(user,id) and not self.db.canEditStudiengang(user):
+                    cherrypy.response.status = 403
+                    return ""
+
             response['data'] = self.db.getModul(id)
 
         if response['data'] is None:
@@ -44,7 +53,10 @@ class Request(object):
 
         return json.dumps(response)
 
-    def PUT(self, id,bezeichnung,kurz,kreditpunkte,sws,beschreibung):
+    def PUT(self, id,bezeichnung,kurz,kreditpunkte,sws,beschreibung,user):
+        if not self.db.canEditStudiengang(user):
+            cherrypy.response.status = 403
+            return ""
         response = dict(id=None)
 
         response['id'] = self.db.putModul(bezeichnung,kurz,kreditpunkte,sws,beschreibung)
@@ -54,15 +66,22 @@ class Request(object):
 
         return json.dumps(response)
 
-    def DELETE(self,id):
+    def DELETE(self,id,user):
+        if not self.db.canEditStudiengang(user):
+            cherrypy.response.status = 403
+            return ""
         response = dict(id=None)
         response["id"] = self.db.deleteModul(id)
         if response["id"] is None:
             cherrypy.response.status = 404
         return json.dumps(response)
 
-    def POST(self, id, bezeichnung,kurz,kreditpunkte,sws,beschreibung):
+    def POST(self, id, bezeichnung,kurz,kreditpunkte,sws,beschreibung,user):
         response = dict(success=None)
+
+        if not self.db.canEditModul(user,id) and not self.db.canEditStudiengang(user):
+            cherrypy.response.status = 403
+            return ""
 
         response['success'] = self.db.updateModul(id,bezeichnung,kurz,kreditpunkte,sws,beschreibung)
         if not response["success"]:

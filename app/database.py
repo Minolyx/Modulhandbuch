@@ -9,10 +9,31 @@ class Database(object):
     studiengangFile = "./data/studiengang.json"
     benutzerFile = "./data/benutzer.json"
 
+    def canEditModul(self,id ,modulId=None):
+        data = Database.readFile(self.benutzerFile)
+        for i in data:
+            benutzer = data[i]
+            if benutzer["id"] == int(id) and benutzer["rolle"] == "Verantwortlicher Modul":
+                if id is not None:
+                    for modul in benutzer["module"]:
+                        if modul == int(modulId):
+                            return True
+                    return False
+                return True
+        return False
+
+    def canEditStudiengang(self,id):
+        data = Database.readFile(self.benutzerFile)
+        for i in data:
+            benutzer = data[i]
+            if benutzer["id"] == int(id) and benutzer["rolle"] == "Verantwortlicher Studiengang":
+                return True
+        return False
+
     def login(self,benutzername,passwort):
         data = Database.readFile(self.benutzerFile)
-        for key in data:
-            benutzer = data[key]
+        for i in data:
+            benutzer = data[i]
             if benutzer["benutzername"] == benutzername and benutzer["passwort"] == passwort:
                 return benutzer["id"]
         return None
@@ -135,15 +156,13 @@ class Database(object):
             else:
                 semester[lehrveranstaltung["semester"]]["kreditpunkte"] = (semester[lehrveranstaltung["semester"]]["kreditpunkte"]+lehrveranstaltung["modul"]["kreditpunkte"])
 
-
-
         for s in semester:
             semester[s]["lehrveranstaltungen"] = []
             for l in data["lehrveranstaltungen"]:
                 if(l["semester"] == s):
                     semester[s]["lehrveranstaltungen"].append(l);
             semester[s]["lehrveranstaltungen"] = sorted(semester[s]["lehrveranstaltungen"] , key=itemgetter('bezeichnung'))
-
+        data["anzahlSemester"] = data["semester"];
         data["semester"] = sorted(semester.items())
         data['kreditpunkte'] = kreditpunkte
         data['lehrveranstaltungen'] = sorted(data["lehrveranstaltungen"] , key=itemgetter('bezeichnung'))
@@ -154,8 +173,8 @@ class Database(object):
     def deleteModul(self,id):
         data = Database.readFile(self.studiengangFile)
         for entry in data:
-            for lehrveranstaltung in data[entry["id"]]["lehrveranstaltungen"]:
-                if lehrveranstaltung["id"] == id:
+            for lehrveranstaltung in data[entry]["lehrveranstaltungen"]:
+                if lehrveranstaltung["id"] == int(id):
                     return None
 
         if self.deleteEntry(self.modulFile,id) :

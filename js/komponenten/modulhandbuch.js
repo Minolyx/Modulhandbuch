@@ -10,6 +10,16 @@ STUDAPP.Modulhandbuch = Class.create({
             listView.initList();
             listView.initHandler();
         });
+        STUDAPP.eventService.subscribe_px(this, 'app');
+    },
+    updateData: function(data){
+        this.data = data;
+    },
+    notify_px: function (self, message, data) {
+        switch(data[0]) {
+            case "updateFormData":
+                this.updateData(data[1]);
+        }
     },
     close: function () {
         $("#idModulhandbuch").hide();
@@ -18,7 +28,8 @@ STUDAPP.Modulhandbuch = Class.create({
     render: function (data) {
         $.ajax({
                 dataType: "json",
-                url: '/lehrveranstaltung/',
+                url: '/lehrveranstaltung/'+this.data["id"],
+                data:{user:STUDAPP.user},
                 type: 'GET'
             })
             .done($.proxy(this.doRender, this))
@@ -31,8 +42,8 @@ STUDAPP.Modulhandbuch = Class.create({
         // json-Daten bereits in js-Objekte umgesetzt
         var rows = STUDAPP.templateManager.execute_px('modulhandbuch.tpl', data);
         this.initList();
-        $("#idModulhandbuch tr[class!='listheader']").remove();
-        $("#idModulhandbuchList").append(rows);
+        $("#idModulhandbuch .clContentArea").empty();
+        $("#idModulhandbuch .clContentArea").append(rows);
         $("#idModulhandbuch").show();
     },
 

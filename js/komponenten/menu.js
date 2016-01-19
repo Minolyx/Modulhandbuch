@@ -24,6 +24,9 @@ STUDAPP.Menu = Class.create({
                 case 'showListButtons':
                     this.showListButtons();
                     break;
+                case 'loginButtons':
+                    this.loginButtons();
+                    break;
                 case 'setContext':
                     console.log("Switch context to "+data[1]);
                     this.context = data[1];
@@ -45,17 +48,20 @@ STUDAPP.Menu = Class.create({
         var markup = '<button data-action="list" class="clButton">Zurück</button><button data-action="save" class="clButton">Speichern</button>';
         $('#idButtonArea').html(markup);
     },
+    loginButtons:function(){
+        var markup = '<button type="button" data-action="abortLogin" class="clButton">Zurück</button> <button data-action="login" class="clButton">Einloggen</button>';
+        $('#idButtonArea').html(markup);
+    },
     showListButtons:function(){
 
         var markup ="";
-
-        if(this.context=="studiengang")
-            markup +='<button data-action="show" class="clButton">Anzeigen</button>' ;
-
-
        markup +=  '<button data-action="add" class="clButton">Erstellen</button>' +
             '<button data-action="edit" class="clButton">Bearbeiten</button>' +
-            '<button data-action="delete" class="clButton">Löschen</button>'
+            '<button data-action="delete" class="clButton">Löschen</button>';
+
+        if(this.context=="studiengang")
+            markup +='<button data-action="semesterplan" class="clButton">Semesterplan</button>'+
+           '<button data-action="modulhandbuch" class="clButton">Modulhandbuch</button>'
         $('#idButtonArea').html(markup);
     },
     hideButtons:function(){
@@ -70,6 +76,7 @@ STUDAPP.Menu = Class.create({
     },
     onClickButtons: function (event) {
         var action = $(event.target).attr("data-action");
+        if(action == "abortLogin") window.location.href="/";
         STUDAPP.eventService.publish_px('app', [action,this.context]);
         event.stopPropagation();
         event.preventDefault();

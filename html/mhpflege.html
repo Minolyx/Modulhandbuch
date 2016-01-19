@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <title>
-          Web Engineering: 2015/2016
-      </title>
-      <meta charset="UTF-8" />
-      <style type="text/css">
-         @import url("/css/custom.css");
-      </style>
-      <script type="text/javascript" src="/js/lib/jquery-2.1.4.min.js"></script>
-      <script type="text/javascript" src="/js/lib/inheritance.js"></script>
-      <script type="text/javascript" src="/js/lib/es.js"></script>
-      <script type="text/javascript" src="/js/lib/te.js"></script>
-      <script type="text/javascript" src="/js/tm.js"></script>
-      <!-- hier zur Verdeutlichung der Strukturierung Aufteilung in mehrere js-Quellen -->
-      <!-- wird man im produktiven Einsatz zu einer js-Quelle zusammenfassen -->
-      <script type="text/javascript" src="/js/mhpflege.js"></script>
-   </head>
-   <body>
-      <header>
-         <h1 id="idSiteHeader" class="clSiteHeader">
-            Web-Engineering: Modulhandbuch
-         </h1>
-         <p id="idLogout" class="clLogout">
-            <a href="/studiengang">Logout</a>
-         </p>
-      </header>
-      <section id="idContentOuter" class="clContentOuter">
-      </section>
-      <nav id="idNav" class="clNav">
-      </nav>
-   </body>
+<head>
+   <title>
+      Web Engineering: 2015/2016
+   </title>
+   <meta charset="UTF-8" />
+   <style type="text/css">
+      @import url("/css/custom.css");
+   </style>
+   <script type="text/javascript" src="/js/lib/jquery-2.1.4.min.js"></script>
+   <script type="text/javascript" src="/js/lib/inheritance.js"></script>
+   <script type="text/javascript" src="/js/lib/es.js"></script>
+   <script type="text/javascript" src="/js/lib/te.js"></script>
+   <script type="text/javascript" src="/js/tm.js"></script>
+
+   <script type="text/javascript">
+      var STUDAPP = STUDAPP || {};
+      STUDAPP.hasToLogin = true;
+      STUDAPP.user = null;
+   </script>
+
+   <script type="text/javascript" src="/js/komponenten/menu.js"></script>
+   <script type="text/javascript" src="/js/komponenten/navigation.js"></script>
+   <script type="text/javascript" src="/js/komponenten/login.js"></script>
+   <script type="text/javascript" src="/js/komponenten/studiengang.js"></script>
+   <script type="text/javascript" src="/js/komponenten/modul.js"></script>
+   <script type="text/javascript" src="/js/komponenten/modulhandbuch.js"></script>
+   <script type="text/javascript" src="/js/komponenten/semesterplan.js"></script>
+   <script type="text/javascript" src="/js/app.js"></script>
+
+</head>
+<body>
+<header>
+   <h1 id="idSiteHeader" class="clSiteHeader">
+      Web-Engineering: Modulhandbuch
+   </h1>
+   <p id="idLogin" class="clLogin">
+      <a href="/" data-action="login-form">Logout</a>
+   </p>
+</header>
+<section id="idContentOuter" class="clContentOuter">
+   <div id="idButtonArea" class="clButtonArea">
+   </div>
+</section>
+<nav id="idNav" class="clNav">
+</nav>
+
+
+</body>
 </html>
