@@ -14,7 +14,7 @@ class Database(object):
         for i in data:
             benutzer = data[i]
             if benutzer["id"] == int(id) and benutzer["rolle"] == "Verantwortlicher Modul":
-                if id is not None:
+                if modulId is not None:
                     for modul in benutzer["module"]:
                         if modul == int(modulId):
                             return True

@@ -56,7 +56,7 @@ STUDAPP.StudiengangListe = Class.create({
     render: function (data) {
         $.ajax({
                 dataType: "json",
-                url: '/lehrveranstaltung/',
+                url: '/studiengang/',
                 type: 'GET',
             data:{user:STUDAPP.user}
             })

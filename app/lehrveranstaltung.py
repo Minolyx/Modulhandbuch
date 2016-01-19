@@ -30,12 +30,12 @@ class Request(object):
 
         response = dict(data=None)
 
-        if not self.db.canEditModul(user) and not self.db.canEditStudiengang(user):
-            cherrypy.response.status = 403
-            return ""
-
-
         if studiengang is None:
+
+            if not self.db.canEditModul(user) and not self.db.canEditStudiengang(user):
+                cherrypy.response.status = 403
+                return ""
+
             response['data'] = self.db.getLehrveranstaltung()
         else:
             response['data'] = self.db.getSemesterplan(studiengang)

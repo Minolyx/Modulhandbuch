@@ -34,7 +34,7 @@ STUDAPP.ModulListe = Class.create({
                                 this.initList();
                             })
                             .fail(function(jqXHR, textStatus) {
-                                alert( "Fehler bei der Anforderung: " + jqXHR.status +"("+jqXHR.statusText+")");
+                                alert( "Modul konnte nicht gelöscht werden da es noch referenziert wird.");
                             });
                     }
             }
