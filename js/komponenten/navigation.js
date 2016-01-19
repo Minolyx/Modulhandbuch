@@ -7,8 +7,9 @@ STUDAPP.Navigation = Class.create({
         this.initHandler();
     },
     render: function (data) {
-        var markup = '<a href="#" data-action="studiengangList">Studiengänge</a> ' +
-            '<a href="#" data-action="modulList">Module</a>';
+        var markup = '<a href="#" data-action="studiengangList">Studiengänge</a> ' ;
+        if(STUDAPP.user != -1)
+            markup+= '<a href="#" data-action="modulList">Module</a>';
         $('#idNav').html(markup);
     },
     initHandler: function () {

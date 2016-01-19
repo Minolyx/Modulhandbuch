@@ -39,14 +39,16 @@ class Request(object):
         else:
             if id is None:
                 if not self.db.canEditStudiengang(user):
-                    cherrypy.response.status = 403
-                    return ""
+                    response['data'] = self.db.getAllowedModules(user)
+                else:
+                    response['data'] = self.db.getModul(id)
             else:
                 if not self.db.canEditModul(user,id) and not self.db.canEditStudiengang(user):
                     cherrypy.response.status = 403
                     return ""
+                else:
+                    response['data'] = self.db.getModul(id)
 
-            response['data'] = self.db.getModul(id)
 
         if response['data'] is None:
             cherrypy.response.status = 404

@@ -18,7 +18,7 @@ STUDAPP.App = Class.create({
         this.semesterplan = new STUDAPP.Semesterplan();
 
         STUDAPP.templateManager = new TELIB.TemplateManager_cl();
-
+        STUDAPP.rolle = "Studierdender";
         if(STUDAPP.hasToLogin)
             this.login = new STUDAPP.Login();
 

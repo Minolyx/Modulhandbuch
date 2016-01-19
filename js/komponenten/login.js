@@ -33,6 +33,7 @@ STUDAPP.Login = Class.create({
         .done(function(data){
             STUDAPP.user = data["id"];
             STUDAPP.hasToLogin = false;
+            STUDAPP.rolle = data["rolle"];
 
             STUDAPP.eventService.publish_px('app',["studiengangList"]);
 

@@ -14,8 +14,9 @@ class Request(object):
     def PUT(self, benutzername,passwort):
         response = dict(id=None)
 
-        response['id'] = self.db.login(benutzername,passwort)
-
+        benutzer = self.db.login(benutzername,passwort)
+        response['id'] = benutzer["id"]
+        response['rolle'] = benutzer["rolle"]
         if response['id'] is None:
             cherrypy.response.status = 401
 

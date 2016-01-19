@@ -1,4 +1,41 @@
 [
-  {"id":0,"benutzername":"studiengang","rolle": "Verantwortlicher Studiengang", "module":[], "passwort": "test"},
-  {"id":1,"benutzername":"modul","rolle": "Verantwortlicher Modul","module":[2,4], "passwort": "test"}
+  {
+    "id": 0,
+    "benutzername": "studiengang",
+    "rolle": "Verantwortlicher Studiengang",
+    "module": [],
+    "passwort": "test"
+  },
+  {
+    "id": 1,
+    "benutzername": "modul",
+    "rolle": "Verantwortlicher Modul",
+    "module": [
+      13,
+      12,
+      10
+    ],
+    "passwort": "test"
+  },
+  {
+    "id": 2,
+    "benutzername": "modul1",
+    "rolle": "Verantwortlicher Modul",
+    "module": [
+      7,
+      9,
+      13
+    ],
+    "passwort": "test"
+  },
+  {
+    "id": 3,
+    "benutzername": "modul2",
+    "rolle": "Verantwortlicher Modul",
+    "module": [
+      11,
+      9
+    ],
+    "passwort": "test"
+  }
 ]

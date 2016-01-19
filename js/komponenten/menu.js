@@ -55,13 +55,21 @@ STUDAPP.Menu = Class.create({
     showListButtons:function(){
 
         var markup ="";
-       markup +=  '<button data-action="add" class="clButton">Erstellen</button>' +
-            '<button data-action="edit" class="clButton">Bearbeiten</button>' +
-            '<button data-action="delete" class="clButton">Löschen</button>';
+        if(STUDAPP.user != -1){
+            if((this.context=="modul" && STUDAPP.rolle=="Verantwortlicher Modul") || STUDAPP.rolle=="Verantwortlicher Studiengang"){
+                markup +=  '<button data-action="edit" class="clButton">Bearbeiten</button>';
+            }
+            if(STUDAPP.rolle=="Verantwortlicher Studiengang"){
+                markup += '<button data-action="add" class="clButton">Erstellen</button>' +
+                    '<button data-action="delete" class="clButton">Löschen</button>';
+            }
 
-        if(this.context=="studiengang")
+        }
+
+        if(this.context=="studiengang"){
             markup +='<button data-action="semesterplan" class="clButton">Semesterplan</button>'+
            '<button data-action="modulhandbuch" class="clButton">Modulhandbuch</button>'
+        }
         $('#idButtonArea').html(markup);
     },
     hideButtons:function(){

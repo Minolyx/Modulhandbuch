@@ -1,66 +1,66 @@
 [
   {
-    "beschreibung": "Einf\u00fchrung in die Mathematik",
-    "sws": 20,
     "id": 7,
-    "kurz": "Mathe 1",
     "kreditpunkte": 6,
-    "bezeichnung": "Mathematik 1"
+    "bezeichnung": "Mathematik 1",
+    "kurz": "Mathe 1",
+    "sws": 20,
+    "beschreibung": "Einf\u00fchrung in die Mathematik"
   },
   {
-    "beschreibung": "Programmiersprache C",
-    "sws": 25,
     "id": 8,
+    "kreditpunkte": 5,
+    "bezeichnung": "Einf\u00fchrung  in die Programmierung",
     "kurz": "EPR",
-    "kreditpunkte": 5,
-    "bezeichnung": "Einf\u00fchrung  in die Programmierung"
+    "sws": 25,
+    "beschreibung": "Programmiersprache C"
   },
   {
-    "beschreibung": "Fortgeschrittene Mathematik",
-    "sws": 20,
     "id": 9,
-    "kurz": "Mathe  2",
-    "kreditpunkte": 5,
-    "bezeichnung": "Mathematik 2"
-  },
-  {
-    "beschreibung": "Allgemeine Grundlagen der Physik",
-    "sws": 18,
-    "id": 10,
-    "kurz": "Ph",
-    "kreditpunkte": 4,
-    "bezeichnung": "Physik"
-  },
-  {
-    "beschreibung": "Allgemeine Grundlagen; Bindungsarten u. Stoffeigenschaften",
-    "sws": 22,
-    "id": 11,
-    "kurz": "C",
-    "kreditpunkte": 4,
-    "bezeichnung": "Chemie"
-  },
-  {
-    "beschreibung": "Programmiersprache C++",
-    "sws": 22,
-    "id": 12,
-    "kurz": "OOA",
-    "kreditpunkte": 5,
-    "bezeichnung": "Objektorientierte Anwendungsentwicklung"
-  },
-  {
-    "beschreibung": "Web-basierte Technologien",
+    "kreditpunkte": 54,
+    "bezeichnung": "Mathematik 4",
+    "kurz": "Mathe  3",
     "sws": 20,
-    "id": 13,
-    "kurz": "WEB",
-    "kreditpunkte": 4,
-    "bezeichnung": "Web-Engineering"
+    "beschreibung": "Fortgeschrittene Mathematik"
   },
   {
-    "beschreibung": "fffffffffffffffffffff",
-    "sws": 100,
+    "id": 10,
+    "kreditpunkte": 4,
+    "bezeichnung": "Physik",
+    "kurz": "Ph",
+    "sws": 18,
+    "beschreibung": "Allgemeine Grundlagen der Physik"
+  },
+  {
+    "id": 11,
+    "kreditpunkte": 4,
+    "bezeichnung": "Chemieuhbjhbhjb",
+    "kurz": "C",
+    "sws": 22,
+    "beschreibung": "Allgemeine Grundlagen; Bindungsarten u. Stoffeigenschaften"
+  },
+  {
+    "id": 12,
+    "kreditpunkte": 5,
+    "bezeichnung": "Objektorientierte Anwendungsentwicklung",
+    "beschreibung": "Programmiersprache C++",
+    "sws": 223,
+    "kurz": "OOA 123"
+  },
+  {
+    "id": 13,
+    "kreditpunkte": 4,
+    "bezeichnung": "Web-Engineering",
+    "kurz": "WEB",
+    "sws": 20,
+    "beschreibung": "Web-basierte Technologien"
+  },
+  {
     "id": 14,
-    "kurz": "f",
     "kreditpunkte": 0,
-    "bezeichnung": "ffffff"
+    "bezeichnung": "ffffff",
+    "kurz": "f",
+    "sws": 100,
+    "beschreibung": "fffffffffffffffffffff"
   }
 ]

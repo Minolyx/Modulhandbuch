@@ -1,192 +1,197 @@
 [
   {
-    "semester": 6,
-    "kurz": "ET",
-    "bezeichnung": "Elektrotechnik",
     "id": 2,
+    "semester": 6,
     "lehrveranstaltungen": [
       {
-        "bezeichnung": "Mathematik",
+        "id": 7,
         "semester": 1,
-        "id": 7
+        "bezeichnung": "Mathematik"
       },
       {
+        "id": 8,
         "semester": 3,
-        "bezeichnung": "Einf\u00fchrung  in die Programmierung",
-        "id": 8
+        "bezeichnung": "Einf\u00fchrung  in die Programmierung"
       },
       {
-        "bezeichnung": "Physik",
+        "id": 10,
+        "semester": 7,
+        "bezeichnung": "AAPhysik"
+      },
+      {
+        "id": 11,
         "semester": 1,
-        "id": 10
+        "bezeichnung": "Chemie"
       },
       {
-        "semester": 2,
-        "bezeichnung": "Stochastik",
-        "id": 9
-      },
-      {
-        "semester": 1,
-        "bezeichnung": "Chemie",
-        "id": 11
-      },
-      {
-        "bezeichnung": "Web-Engineering",
+        "id": 13,
         "semester": 3,
-        "id": 13
+        "bezeichnung": "Web-Engineering"
       },
       {
-        "bezeichnung": "Objektorientierte Anwendungsentwicklung",
+        "id": 12,
         "semester": 2,
-        "id": 12
+        "bezeichnung": "Objektorientierte Anwendungsentwicklung"
+      },
+      {
+        "id": 14,
+        "semester": 2,
+        "bezeichnung": "ffffff test"
       }
-    ]
+    ],
+    "kurz": "ET",
+    "bezeichnung": "Elektrotechnik"
   },
   {
-    "semester": 6,
-    "kurz": "HC",
-    "bezeichnung": "HealthCare",
     "id": 3,
+    "semester": 6,
     "lehrveranstaltungen": [
       {
+        "id": 7,
         "semester": 1,
-        "bezeichnung": "Algebra",
-        "id": 7
+        "bezeichnung": "Algebra"
       },
       {
-        "bezeichnung": "Physik",
+        "id": 10,
         "semester": 2,
-        "id": 10
+        "bezeichnung": "Physik"
       },
       {
-        "bezeichnung": "Chemie",
+        "id": 11,
         "semester": 1,
-        "id": 11
+        "bezeichnung": "Chemie"
       },
       {
-        "bezeichnung": "Einf\u00fchrung  in die Programmierung",
+        "id": 8,
         "semester": 1,
-        "id": 8
+        "bezeichnung": "Einf\u00fchrung  in die Programmierung"
       },
       {
+        "id": 9,
         "semester": 2,
-        "bezeichnung": "Stochastik",
-        "id": 9
+        "bezeichnung": "Stochastik"
       },
       {
+        "id": 13,
         "semester": 3,
-        "bezeichnung": "Web-Engineering",
-        "id": 13
+        "bezeichnung": "Web-Engineering"
       },
       {
+        "id": 12,
         "semester": 2,
-        "bezeichnung": "Objektorientierte Anwendungsentwicklung",
-        "id": 12
+        "bezeichnung": "Objektorientierte Anwendungsentwicklung"
       },
       {
+        "id": 14,
         "semester": 2,
-        "bezeichnung": "ffffff",
-        "id": 14
+        "bezeichnung": "ffffff"
       }
-    ]
+    ],
+    "kurz": "HC",
+    "bezeichnung": "HealthCare"
   },
   {
-    "bezeichnung": "Informatik",
-    "kurz": "Info",
-    "semester": 6,
     "id": 4,
-    "lehrveranstaltungen": [
-      {
-        "semester": 1,
-        "bezeichnung": "Algebra",
-        "id": 7
-      },
-      {
-        "semester": 1,
-        "bezeichnung": "Einf\u00fchrung  in die Programmierung",
-        "id": 8
-      },
-      {
-        "bezeichnung": "Stochastik",
-        "semester": 2,
-        "id": 9
-      },
-      {
-        "bezeichnung": "Web-Engineering",
-        "semester": 3,
-        "id": 13
-      },
-      {
-        "semester": 2,
-        "bezeichnung": "Objektorientierte Anwendungsentwicklung",
-        "id": 12
-      },
-      {
-        "bezeichnung": "ffffff",
-        "semester": 2,
-        "id": 14
-      }
-    ]
-  },
-  {
-    "bezeichnung": "Mathematik",
-    "kurz": "M",
     "semester": 6,
-    "id": 5,
     "lehrveranstaltungen": [
       {
-        "bezeichnung": "Algebra",
+        "id": 7,
         "semester": 1,
-        "id": 7
+        "bezeichnung": "Algebra"
       },
       {
+        "id": 8,
+        "semester": 1,
+        "bezeichnung": "Einf\u00fchrung  in die Programmierung"
+      },
+      {
+        "id": 9,
         "semester": 2,
-        "bezeichnung": "Mathematik 2",
-        "id": 9
+        "bezeichnung": "Stochastik"
       },
       {
-        "semester": 22,
-        "bezeichnung": "ugh",
-        "id": 8
+        "id": 13,
+        "semester": 3,
+        "bezeichnung": "Web-Engineering"
       },
       {
-        "semester": 43,
-        "bezeichnung": "noooooooooo",
-        "id": 12
-      },
-      {
+        "id": 12,
         "semester": 2,
-        "bezeichnung": "ffffff",
-        "id": 14
+        "bezeichnung": "Objektorientierte Anwendungsentwicklung"
+      },
+      {
+        "id": 14,
+        "semester": 2,
+        "bezeichnung": "ffffff"
+      },
+      {
+        "id": 11,
+        "semester": 4,
+        "bezeichnung": "Chemie 3"
       }
-    ]
+    ],
+    "kurz": "Info",
+    "bezeichnung": "Informatik"
   },
   {
-    "bezeichnung": "shit",
-    "kurz": "blub",
-    "semester": 329393,
-    "id": 6,
+    "id": 5,
+    "semester": 6,
     "lehrveranstaltungen": [
       {
-        "bezeichnung": "wasssuup",
-        "semester": 34,
-        "id": 7
+        "id": 7,
+        "semester": 1,
+        "bezeichnung": "Algebra"
       },
       {
-        "bezeichnung": "ugh",
-        "semester": 22,
-        "id": 8
-      },
-      {
-        "bezeichnung": "noooooooooo",
-        "semester": 43,
-        "id": 12
-      },
-      {
-        "bezeichnung": "ffffff",
+        "id": 9,
         "semester": 2,
-        "id": 14
+        "bezeichnung": "Mathematik 2"
+      },
+      {
+        "id": 8,
+        "semester": 22,
+        "bezeichnung": "ugh"
+      },
+      {
+        "id": 12,
+        "semester": 43,
+        "bezeichnung": "noooooooooo"
+      },
+      {
+        "id": 14,
+        "semester": 2,
+        "bezeichnung": "ffffff"
       }
-    ]
+    ],
+    "kurz": "M",
+    "bezeichnung": "Mathematik"
+  },
+  {
+    "id": 6,
+    "semester": 329393,
+    "lehrveranstaltungen": [
+      {
+        "id": 7,
+        "semester": 34,
+        "bezeichnung": "wasssuup"
+      },
+      {
+        "id": 8,
+        "semester": 22,
+        "bezeichnung": "ugh"
+      },
+      {
+        "id": 12,
+        "semester": 43,
+        "bezeichnung": "noooooooooo"
+      },
+      {
+        "id": 14,
+        "semester": 2,
+        "bezeichnung": "ffffff"
+      }
+    ],
+    "kurz": "blub",
+    "bezeichnung": "shit"
   }
 ]

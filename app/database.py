@@ -9,6 +9,47 @@ class Database(object):
     studiengangFile = "./data/studiengang.json"
     benutzerFile = "./data/benutzer.json"
 
+
+    def getUser(self):
+        benutzer = {}
+        data = Database.readFile(self.benutzerFile)
+        for u in data:
+            if data[u]["rolle"] == "Verantwortlicher Modul":
+                benutzer[u] = data[u]
+                del benutzer[u]["passwort"]
+        return benutzer
+
+    def getAssignedUser(self,modul):
+        user = {}
+        data = Database.readFile(self.benutzerFile)
+        for u in data:
+            for m in data[u]["module"]:
+                if int(modul) == m:
+                    user[u] = data[u]
+                    del user[u]["passwort"]
+
+        return user
+
+    def assignUser(self,user,modul):
+        data = Database.readFile(self.benutzerFile)
+        for u in data:
+            if u == int(user):
+                ud=data[u]
+                ud["module"].append(int(modul))
+
+        Database.writeFile(self.benutzerFile,data)
+        return True;
+
+    def unassignUser(self,user,modul):
+        data = Database.readFile(self.benutzerFile)
+        for u in data:
+            if u == int(user):
+                ud=data[u]
+                ud["module"].remove(int(modul))
+
+        Database.writeFile(self.benutzerFile,data)
+        return True;
+
     def canEditModul(self,id ,modulId=None):
         data = Database.readFile(self.benutzerFile)
         for i in data:
@@ -26,7 +67,7 @@ class Database(object):
         data = Database.readFile(self.benutzerFile)
         for i in data:
             benutzer = data[i]
-            if benutzer["id"] == int(id) and benutzer["rolle"] == "Verantwortlicher Studiengang":
+            if i == int(id) and benutzer["rolle"] == "Verantwortlicher Studiengang":
                 return True
         return False
 
@@ -35,17 +76,17 @@ class Database(object):
         for i in data:
             benutzer = data[i]
             if benutzer["benutzername"] == benutzername and benutzer["passwort"] == passwort:
-                return benutzer["id"]
+                return benutzer
         return None
 
     def getModulTemplate(self,id=None,bezeichnung=None,kurz=None,kreditpunkte=None,sws=None,beschreibung=None):
 
         id = 0 if id is None else int(id)
-        bezeichnung = "" if bezeichnung is None else bezeichnung
-        kurz = "" if kurz is None else kurz
+        bezeichnung = " " if bezeichnung is None else bezeichnung
+        kurz = " " if kurz is None else kurz
         kreditpunkte = 0 if kreditpunkte is None else int(kreditpunkte)
         sws = 0 if sws is None else int(sws)
-        beschreibung = "" if beschreibung is None else beschreibung
+        beschreibung = " " if beschreibung is None else beschreibung
 
         return {
             'id': id,
@@ -58,8 +99,8 @@ class Database(object):
 
     def getStudiengangTemplate(self,id=None,bezeichnung=None,kurz=None,semester=None,lehrveranstaltungen=None):
         id = 0 if id is None else int(id)
-        bezeichnung = "" if bezeichnung is None else bezeichnung
-        kurz = "" if kurz is None else kurz
+        bezeichnung = " " if bezeichnung is None else bezeichnung
+        kurz = " " if kurz is None else kurz
         semester = 0 if semester is None else int(semester)
         lehrveranstaltungen = [] if lehrveranstaltungen is None else lehrveranstaltungen
         return {
@@ -120,6 +161,23 @@ class Database(object):
                 Database.writeFile(self.studiengangFile,data)
                 return True
         return False
+
+    def getAllowedModules(self,user):
+        response = []
+        benutzer = None
+        data = Database.readFile(self.benutzerFile)
+        for i in data:
+            b = data[i]
+            if b["id"] == int(user) and b["rolle"] == "Verantwortlicher Modul":
+                benutzer = b;
+        if benutzer is not None:
+            module = self.getEntry(self.modulFile,None);
+            for m in module:
+                for am in benutzer["module"]:
+                    if am == m:
+                        response.append(module[m]);
+        return response
+
 
     def getModul(self,id=None):
         return self.getEntry(self.modulFile,id)

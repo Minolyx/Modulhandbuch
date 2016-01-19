@@ -158,7 +158,7 @@ STUDAPP.ModulForm = Class.create({
                             });
 
                     } else {
-                        alert("Bitte prüfen Sie die Eingaben in den Formularfeldern!")
+                            alert("Bitte prüfen Sie die Eingaben in den Formularfeldern!")
                     }
                 }
                 break;
@@ -206,9 +206,123 @@ STUDAPP.ModulForm = Class.create({
         $('#idModulForm #sws').val(data['sws']);
         $('#idModulForm #beschreibung').val(data['beschreibung']);
 
+        if(STUDAPP.rolle == "Verantwortlicher Studiengang"){
+            $('#idModulForm #kurz').prop( "readonly", true );
+            $('#idModulForm #kreditpunkte').prop( "readonly", true );
+            $('#idModulForm #sws').prop( "readonly", true );
+            $('#idModulForm #beschreibung').prop( "readonly", true );
+            $('#idModulForm #bezeichnung').prop( "readonly", false );
+            $('#idModulForm #editModuleUser').show();
+        }
+
+        if(STUDAPP.rolle == "Verantwortlicher Modul"){
+            $('#idModulForm #kurz').prop( "readonly", false );
+            $('#idModulForm #kreditpunkte').prop( "readonly", false );
+            $('#idModulForm #sws').prop( "readonly", false );
+            $('#idModulForm #beschreibung').prop( "readonly", false );
+            $('#idModulForm #bezeichnung').prop( "readonly", true );
+            $('#idModulForm #editModuleUser').hide();
+        }
+
         this.storeFormContent();
 
+
+        $("#benutzerListe").change(function() {
+            $("#editPanel > div").show();
+            $("#editPanel .bezeichnung").val($(this).find(":selected").attr("data_bezeichnung"));
+            $("#editPanel .id").val($(this).find(":selected").attr("data_id"));
+            $("#editPanel .semester").val("");
+
+            $("#editPanel .add").show();
+            $("#editPanel .save").hide();
+            $("#editPanel .remove").hide();
+        });
+
+        $("#berechtigteNutzerListe").change(function() {
+            $("#editPanel > div").show();
+            $("#editPanel .bezeichnung").val($(this).find(":selected").attr("data_bezeichnung"));
+            $("#editPanel .id").val($(this).find(":selected").attr("data_id"));
+            $("#editPanel .semester").val($(this).find(":selected").attr("data_semester"));
+
+            $("#editPanel .add").hide();
+            $("#editPanel .save").show();
+            $("#editPanel .remove").show();
+        });
+
+
+        var that = this;
+        $("#editPanel .add").click(function(){
+
+            var modul = data['id'];
+            var user = $("#editPanel .id").val();
+
+            $.ajax({
+                dataType: "json",
+                url: '/user/'+modul+'/'+user,
+                type: 'PUT',
+                data:{user:STUDAPP.user}
+            }).done(function(data){
+                if(data["success"]){
+                    that.renderAssignment(modul);
+                }
+            });
+        });
+
+        $("#editPanel .remove").click(function(){
+
+            var modul = data['id'];
+            var user = $("#editPanel .id").val();
+
+            $.ajax({
+                dataType: "json",
+                url: '/user/'+modul+'/'+user+"/?user="+STUDAPP.user,
+                type: 'DELETE'
+            }).done(function(data){
+                if(data["success"]){
+                    that.renderAssignment(modul);
+                }
+            });
+        });
+        this.renderAssignment(data['id']);
         $("#idModulForm").show();
+    },
+
+    renderAssignment: function (modul) {
+        $("#editPanel > div").hide();
+        $("#editPanel .id").val("");
+
+        $.ajax({
+            dataType: "json",
+            url: '/user/'+modul+"/",
+            data:{user:STUDAPP.user},
+            type: 'GET'
+        }).done(function(data){
+            var rows = STUDAPP.templateManager.execute_px('benutzerListe.tpl', data);
+            $("#berechtigteNutzerListe").empty();
+            $("#berechtigteNutzerListe").append(rows);
+
+            $.ajax({
+                dataType: "json",
+                url: '/user/',
+                data:{user:STUDAPP.user},
+                type: 'GET'
+            }).done(function(data){
+                var rows = STUDAPP.templateManager.execute_px('benutzerListe.tpl', data);
+                $("#benutzerListe").empty();
+                $("#benutzerListe").append(rows);
+
+                $("#benutzerListe option").each(function(i,item){
+                    var id = $(item).attr("data_id");
+                    if($('#berechtigteNutzerListe option[data_id="'+id+'"]').length != 0){
+                        $(item).remove();
+                    }
+                })
+            });
+
+
+        });
+
+
     },
     isModified: function () {
         // Prüfen, ob Formularinhalt verändert wurde
